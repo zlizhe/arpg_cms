@@ -95,7 +95,7 @@ class CmsArticleModel extends Model{
 	 */
 	public function get($id)
 	{
-		$row = $this->field(array('id','cat_id','title','content','app','created_uid','created_at','comment_num','view_num','tags','cover_img'))->cache(true, 60* 10)->find($id);
+		$row = $this->field(array('id','cat_id','title','content','app','created_uid','created_at','comment_num','view_num','tags','cover_img'))->find($id);
 		return $row;
 	}
 
