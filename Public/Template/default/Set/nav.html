@@ -1,0 +1,83 @@
+
+<if condition="!$navArr">
+
+	<blockquote>没有找到信息</blockquote>
+	
+<else />
+	
+	<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setEditAllNav')}" enctype="multipart/form-data">
+
+	<table class="table table-hover">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>顺序</th>
+				<th>名称</th>
+				<th>链接</th>
+				<th>&nbsp;</th>
+				<th class="text-center">首页</th>
+				<th class="text-center">启用</th>
+				<th class="text-center">新窗口</th>
+				<th>&nbsp;</th>
+				
+			</tr>
+		</thead>
+
+		<tbody>
+			<foreach name="navArr" item="value">
+				<tr>
+					<td><input type="checkbox" name="del[]" id="checkOn" value="{$value[id]}"></td>
+					
+					<td class="col-xs-1"><input type="text" class="form-control input-mini" value="{$value['sort']}" name="sort[{$value[id]}]" /></td>
+
+					<td>
+						{$value['value']}
+					</td>
+					<td>
+					    <input type="text" class="form-control input-mini" value="{$value['link']}" name="link[{$value['id']}]" />
+					</td>
+					<td>
+						<a href="{$value['link']}" target="_blank" title="访问链接"><span class="glyphicon glyphicon-share"></span></a>
+					</td>
+					<td class="text-center">
+						<input type="radio" name="index" value="{$value['id']}" <if condition="$site_home == $value['id']">checked</if>>
+					</td>
+					<td class="text-center">
+						<input type="checkbox" name="app[{$value['id']}]" value="1" <if condition="$value['app']">checked</if>>
+					</td>
+
+					<td class="text-center">
+						<input type="checkbox" name="target[{$value['id']}]" value="1" <if condition="$value['target']">checked</if>>
+					</td>
+					<td>
+						<a href="{:U('/set/dialog/editNav', array('nid'=>$value['id'],'ref'=>$ref,'ac'=>'edit'))}" class="btn btn-default btn-xs" id="showWindow"><span class="glyphicon glyphicon-edit"></span> 高级</a>
+					</td>
+				</tr>
+				<input type="hidden" value="{$value['id']}" name='id[]' >
+			</foreach>
+
+		</tbody>
+
+	</table>
+
+
+	<hr>
+	<div class="setBchange">
+		<label for="chk_all" class="control-label">
+			<input id="chk_all" class="pc vm" type="checkbox" name="chk_all" /> 删?
+		</label>
+		&nbsp;
+		<input type="hidden" value="{$ref}" name="ref" />
+		<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+	</div>
+	</form>
+
+
+	<blockquote>
+		<h5><span class="glyphicon glyphicon-info-sign"></span> 说明</h5>
+		<small>选择栏目执行删除操作, 否则更新数据行</small>
+		<small>默认模板 (default) 最多支持二级导航显示, 如需扩展需要更改模板</small>
+		<small>外部链接请使用 http:// 开头, 内部链接请使用 / 开头</small>
+	</blockquote>
+</if>

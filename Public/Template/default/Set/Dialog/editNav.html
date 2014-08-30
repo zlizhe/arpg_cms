@@ -1,0 +1,91 @@
+<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setEditNav')}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">
+				<if condition="$ac == 'add'">
+				新增主导航
+				<else />
+				编辑导航 "{$navArr['value']}"
+				</if>
+			</h4>
+		</div>
+		<div class="modal-body">
+
+				<div class="form-group">
+			    	<label for="InputValue1"><em>*</em> 导航名称</label>
+			    	<input type="text" class="form-control" id="InputValue1" placeholder="导航名称" value="{$navArr['value']}" name="value" maxlength="20">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputTitle1">描述(鼠标悬停时显示)</label>
+			    	<input type="text" class="form-control" id="InputTitle1" placeholder="描述" value="{$navArr['title']}" name="title" maxlength="50">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputLink1"><em>*</em> 链接地址</label>
+			    	<input type="text" class="form-control" id="InputLink1" placeholder="链接地址" value="{$navArr['link']}" name="link" maxlength="200">
+				</div>
+
+<!-- 				<div class="form-group">
+					<div class="checkbox">
+					  	<label>
+					    <input type="checkbox" name="index" value="1" <if condition="$value[index]">checked</if> />设为首页
+					  	</label>
+					</div>
+				</div> -->
+
+				<div class="form-group">
+					<div class="checkbox">
+					  	<label>
+					    	<input type="checkbox" name="target" value="1" <if condition="$navArr['target']">checked</if> />新窗口打开链接
+					  	</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputCategory1">上级导航</label>
+			    	<select name="upid" id="InputCategory1" class="form-control">
+			    		<option value="0">最高级</option>
+			    		<foreach name="navList" item="value" >
+							<option value="{$value['id']}" <if condition="$value['id'] == $navArr['upid']">selected</if> >{$value['value']}</option>
+						</foreach>
+			    	</select>
+				</div>
+
+				<div class="help-block">最多可以设置二级深度的子导航</div>
+
+				<input type="hidden" value="{$navArr['id']}" name="nid" />
+				<input type="hidden" value="{$ref}" name="ref" />
+				<input type="hidden" value="{$ac}" name="ac" />
+			
+
+		</div>
+		<div class="modal-footer">
+
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        	<button type="submit" class="btn btn-primary" data-loading-text="Loading...">保存</button>
+	    </div>
+	</div>
+</div>
+</form>
+
+<script>
+
+	//点击后 清除 INPUT HAS-ERROR 的状态
+	$("input[type='password'],input[type='text'],input[type='email']").click(function(){
+		hidePopOnly($(this));
+	});	
+
+	
+	/* 按钮状态显示  */
+	$('button[data-loading-text]').click(function () {
+	    var btn = $(this).button('loading');
+	    setTimeout(function () {
+	        btn.button('reset');
+	    }, 3000);
+	});
+	
+</script>

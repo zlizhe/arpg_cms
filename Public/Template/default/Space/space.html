@@ -1,0 +1,43 @@
+
+		
+<div class="col-md-8">
+	<div class="page-header">
+		<h1>{$title}</h1>
+	</div>
+
+	<div class="clearfix"></div>
+	
+	<if condition="$commentArr['row']">
+
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#">{$membersArr['realname']}的评论</a></li>
+		</ul>
+		
+		<br>
+		<ul class="list-unstyled">
+			<foreach name="commentArr['row']" item="value">
+				<li>
+					<blockquote>
+						<a href="/article/{$value['aid']}#commentPublish">{$value['content']}</a>
+						<small>{$value['created_at']|date="Y-m-d H:i",###}</small>
+					</blockquote>
+				</li>
+			</foreach>
+		</ul>
+	<else />
+		<blockquote>该用户很懒没有留下更多信息</blockquote>
+	</if>
+
+	<div class="clearfix"></div>
+	
+	<div class="pagination-centered">
+		<ul class="pagination pagination-sm">
+			<if condition="$commentArr['mulitpage']">
+				{$commentArr['mulitpage']}
+			<else />
+				<li>&nbsp;</li>
+			</if>
+		</ul>
+	</div>
+
+</div>

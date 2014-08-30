@@ -1,0 +1,127 @@
+
+<link href="__PUBLIC__/css/set.css" rel="stylesheet">
+<script src="__PUBLIC__/js/set.js"></script>
+
+<header>
+	<nav class="navbar navbar-default" role="navigation">
+	  	<div class="container-fluid">
+		    <div class="navbar-header">
+		      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">菜单</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+		      	</button>
+		      	<a class="navbar-brand" href="#">管理中心</a>
+		    </div>
+
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      	<ul class="nav navbar-nav">
+		      		<if condition="isPurview('setPart1', false, false)">
+		        	<li class="dropdown">
+		          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">全局 <span class="caret"></span></a>
+		          		<ul class="dropdown-menu" role="menu">
+	                        <if condition="isPurview('Set_Set_setting', false, false)">
+	                            <li><a href="{:U('/set/setting')}">网站设置</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_reginfo', false, false)">
+	                        	<li><a href="{:U('/set/reginfo')}">注册控制</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_user', false, false)">
+	                            <li><a href="{:U('/set/user')}">会员管理</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_competence', false, false)">
+	                            <li><a href="{:U('/set/competence')}">权限设置</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_group', false, false)">
+	                            <li><a href="{:U('/set/group')}">角色管理</a></li>
+	                        </if>
+		          		</ul>
+		        	</li>
+		        	</if>
+
+		        	<if condition="isPurview('setPart2', false, false)">
+		        	<li class="dropdown">
+		          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">界面 <span class="caret"></span></a>
+		          		<ul class="dropdown-menu" role="menu">
+			          		<if condition="isPurview('Set_Set_slide', false, false)">
+	                            <li><a href="{:U('/set/slide')}">首页滚动图片</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_nav', false, false)">
+	                            <li><a href="{:U('/set/nav')}">导航设置</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_themes', false, false)">
+	                            <li><a href="{:U('/set/themes')}">主题管理</a></li>
+	                        </if>
+		          		</ul>
+		        	</li>
+		        	</if>
+					
+					<if condition="isPurview('setPart3', false, false)">
+		        	<li class="dropdown">
+		          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">内容 <span class="caret"></span></a>
+		          		<ul class="dropdown-menu" role="menu">
+	                        <if condition="isPurview('Set_Set_category', false, false)">
+	                            <li><a href="{:U('/set/category')}">分类管理</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_article', false, false)">
+	                            <li><a href="{:U('/set/article')}">文章管理</a></li>
+	                        </if>
+	                        <if condition="isPurview('Set_Set_comment', false, false)">
+                            	<li><a href="{:U('/set/comment')}">评论管理</a></li>
+                        	</if>
+		          		</ul>
+		        	</li>
+		        	</if>
+					
+<!-- 					<if condition="isPurview('setPart4', false, false)">
+		        	<li class="dropdown">
+		          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">接口 <span class="caret"></span></a>
+		          		<ul class="dropdown-menu" role="menu">
+		            		<li><a href="{:U('/set/oss')}">OSS上传</a></li>
+		            		<li><a href="#">短信接口</a></li>
+		            		<li><a href="#">支付接口</a></li>
+		            		<li><a href="#">第三方登录</a></li>
+		          		</ul>
+		        	</li>
+		        	</if> -->
+					
+					<if condition="isPurview('setPart5', false, false)">
+		        	<li class="dropdown">
+		          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <span class="caret"></span></a>
+		          		<ul class="dropdown-menu" role="menu">
+		            		<li><a href="{:U('/set/dialog/rmCache', array('type'=>'Cache', 'ref'=>$ref))}" id="showWindow">清理模板缓存</a></li>
+		            		<li><a href="{:U('/set/dialog/rmCache', array('type'=>'Data', 'ref'=>$ref))}" id="showWindow">清理Data缓存</a></li>
+		            		<li><a href="{:U('/set/dialog/rmCache', array('type'=>'Temp', 'ref'=>$ref))}" id="showWindow">清理Temp缓存</a></li>
+		            		<li role="presentation" class="divider"></li>
+		            		<li><a href="{:U('/set/dialog/rmCache', array('type'=>'all', 'ref'=>$ref))}" id="showWindow">清理全部缓存</a></li>
+		          		</ul>
+		        	</li>
+		        	</if>
+
+		      	</ul>
+		      	
+<!-- 				<div class="navbar-form  navbar-left" role="search" >
+			        <div class="form-group has-feedback">
+			          	<input type="text" class="form-control" placeholder="关键词..." name="query" id="query" autocomplate="off" onkeydown="event.keyCode==13 && $('#set_search').click();" value="{$query}">
+			          	<a href="javascript:;" id="set_search"><span class="glyphicon glyphicon-search form-control-feedback"></span></a>
+			        </div>
+			        <input type="hidden" value="{:U($urlName, array('query'=>NULL))}/query/" name="set_search_url" id="set_search_url" />
+		  		</div> -->
+
+		      	<ul class="nav navbar-nav navbar-right">
+		        	<li class="dropdown">
+		          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$_Guser['realname']} <span class="caret"></span></a>
+		          	<ul class="dropdown-menu" role="menu">
+		            		<li><a href="{:U('/space/setup')}">账号设置</a></li>
+		            		<li><a href="/">网站首页</a></li>
+		            		<li class="divider"></li>
+		            		<li><a href="javascript:;" data-dialog="{:U('Dialog/Dialog/logout')}" id="showWindow">登出</a></li>
+		          		</ul>
+		        	</li>
+		      	</ul>
+		    </div>
+	  	</div>
+	</nav>
+
+</header>

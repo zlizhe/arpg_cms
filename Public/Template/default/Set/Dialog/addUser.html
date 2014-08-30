@@ -1,0 +1,77 @@
+<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setAddUser')}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">新增会员 (快速添加)</h4>
+		</div>
+		<div class="modal-body">
+
+				<div class="form-group">
+			    	<label for="InputRealname1">昵称</label>
+			    	<input type="text" class="form-control" id="InputRealname1" placeholder="昵称" value="" name="realname">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputUsername1">用户名</label>
+			    	<input type="text" class="form-control" id="InputUsername1" placeholder="用户名" value="" name="username">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputEmail1">Email</label>
+			    	<input type="email" class="form-control" id="InputEmail1" placeholder="电子邮箱" value="" name="email">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputPhone1">手机号码</label>
+			    	<input type="text" class="form-control" id="InputPhone1" placeholder="手机号码" value="" name="phone">
+				</div>
+				
+				<div class="form-group">
+			    	<label for="InputPassword1">设置密码</label>
+					<input type="password" class="form-control" id="InputPassword1" placeholder="设置密码" name="password" value="">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputGroupcom1">初始角色组</label>
+					<select name="group" id="InputGroupcom1" class="form-control">
+						<foreach name="groupArr" item="value">
+							<option value="{$value[id]}" <if condition="$membersArr[groupid] == 1">selected</if> >{$value[value]}</option>
+						</foreach>
+					</select>
+				</div>
+				
+				<div class="help-block">此栏目为管理员快速创建用户之用。密码留空则无法正常登录(适用于内部账号使用), 用户名/电子邮件/手机号码 请注意格式, 系统不会检查是否正确</div>
+
+				<input type="hidden" value="{$ref}" name="ref" />
+			
+
+		</div>
+		<div class="modal-footer">
+
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        	<button type="submit" class="btn btn-primary" data-loading-text="Loading...">保存</button>
+	    </div>
+	</div>
+</div>
+</form>
+
+
+<script>
+	
+	//点击后 清除 INPUT HAS-ERROR 的状态
+	$("input[type='password'],input[type='text'],input[type='email']").click(function(){
+		hidePopOnly($(this));
+	});	
+
+
+	/* 按钮状态显示  */
+	$('button[data-loading-text]').click(function () {
+	    var btn = $(this).button('loading');
+	    setTimeout(function () {
+	        btn.button('reset');
+	    }, 3000);
+	});
+	
+</script>

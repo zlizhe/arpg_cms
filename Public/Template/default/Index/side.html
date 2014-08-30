@@ -1,0 +1,14 @@
+<if condition="$sameCatArr">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			热门文章
+		</div>
+		
+		<ul class="list-group">
+			<foreach name="sameCatArr" item="value">
+				<li class="list-group-item"><a href="/article/{$value['id']}/{$value['title']}">{$value['title']}</a></li>
+			</foreach>
+		</ul>
+		
+	</div>
+</if>

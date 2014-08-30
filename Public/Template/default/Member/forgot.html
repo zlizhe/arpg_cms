@@ -1,0 +1,121 @@
+<include file="Common/header" />
+	
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-md-4"></div>
+
+			<div class="col-md-4">
+				<h3 class="text-center">{$seoSetting['title']}</h3>
+
+				<hr>
+
+				<div class="progress">
+					<if condition="$step == 1">
+						<div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%;">
+					   	输入电子邮箱 >>
+						</div>
+					</if>
+					<if condition="$step == 2">
+						<div class="progress-bar" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
+					   	发送验证邮件 >>
+						</div>
+					</if>
+					<if condition="$step == 3">
+						<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+					   	设置新密码
+						</div>
+					</if>
+				</div>
+
+					
+					{// 验证邮件地址}
+					<if condition="$step == 1">
+						<form role="form" method="post" action="" enctype="multipart/form-data">
+							<div class="form-group <if condition="$error['email']">has-error<elseif condition="$forgotArr" />has-success</if>">
+						    	<label for="exampleInputEmail1">账号</label>
+						    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="电子邮件" name="email" value="{$forgotArr['email']}">
+								<div class="help-block">{$error['email']}</div>
+							</div>
+
+							<div class="form-group <if condition="$error['verify']">has-error<elseif condition="$forgotArr" />has-success</if>">
+						    	<label for="exampleInputVerify">验证字符</label>
+						    	<div class="clearfix"></div>
+						    	<a href="javascript:getCaptcha();" id="captcha" title="看不清? 点击换一张" ><img src="__PUBLIC__/img/loading.gif" alt="正在生成验证图片" /></a>
+						    	<div class="clearfix"></div>
+						    	<br>
+								<input type="text" class="form-control" id="exampleVerify" placeholder="输入您看到的字符" name="verify">
+								<div class="help-block">{$error['verify']}</div>
+							</div>
+
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-primary" data-loading-text="Loading...">下一步 <span class="glyphicon glyphicon-chevron-right"></span></button>
+							</div>
+							<input type="hidden" value="{$step}" name="step" />
+						</form>
+					</if>
+					
+					{// 发送验证邮件}
+					<if condition="$step == 2">
+						<form role="form" method="post" action="" enctype="multipart/form-data">
+
+
+							<div class="form-group <if condition="$error">has-error</if>">
+								<div class="bs-callout bs-callout-info">
+								    <h4>系统已发送重置密码邮件至您的邮箱 {$forgotEmail} , 请在2小时内完成密码修改。</h4>
+								    <p>
+								    <a href='//mail.{$mailUrl}' target='_blank'>点击此处登入邮箱查看</a>
+						    		如果您长时间没有收到邮件,请检查您的垃圾信箱并将我们的发信账号 {$_Gset['MAIL_USERNAME']} 加入白名单！
+						    		</p>
+								</div>
+							</div>
+	<!-- 						<div class="form-group text-center">
+								<a class="btn btn-primary" href="//mail.{$mailUrl}">登入邮箱查看 <span class="glyphicon glyphicon-chevron-right"></span></a>
+							</div> -->
+							<input type="hidden" value="{$step}" name="step" />
+						</form>
+					</if>
+
+					{// 设置新密码}
+					<if condition="$step == 3">
+
+						<form role="form" method="post" target="actionfrm" action="{:U('Member/Ajax/setNewPassword')}" enctype="multipart/form-data">
+
+
+							<div class="form-group">
+						    	<label for="exampleInputNewPassword1">新密码</label>
+								<input type="password" class="form-control" id="exampleInputNewPassword1" placeholder="新密码" name="newPassword" value="">
+							</div>
+
+							<div class="form-group">
+						    	<label for="exampleInputNewPassword2">确认新密码</label>
+								<input type="password" class="form-control" id="exampleInputNewPassword2" placeholder="确认新密码" name="newPassword2" value="">
+							</div>
+							
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-primary" data-loading-text="Loading...">完成 <span class="glyphicon glyphicon-chevron-right"></span></button>
+							</div>
+							
+						</form>
+
+						<script>
+							window.onbeforeunload = function(event) {
+							    (event || window.event).returnValue = "确定要关闭本页吗? 您未保存的数据将会丢失!";
+							}
+						</script>
+					</if>
+
+				<hr>
+				<div class="clearfix"></div>
+				<p class="text-right"><span class="glyphicon glyphicon-question-sign"></span> <a href="{:U('/member/login')}">还记得密码? 返回登录</a></p>
+				
+			</div>
+
+			<div class="col-md-4"></div>
+		</div>
+
+	</div>
+<script>
+	getCaptcha();
+</script>
+<include file="Common/footer" />

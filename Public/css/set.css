@@ -1,0 +1,50 @@
+/**
+ * 	Powered by ARPG TEAM.
+ * 	http://web.zlizhe.com
+ *  管理后台 专用
+ */
+.set_main{
+	margin-top: 20px;
+}
+.set_rightsearch{
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.panel-heading a{
+	color: #999;
+}
+.panel-heading a:hover{
+	color: #000;
+	text-decoration: none;
+}
+.setBchange{
+	padding: 1%;
+	padding-top: 0;
+}
+.table-checked > td, .table-checked > th, .table-hover .table-checked:hover > td, .table-hover .table-checked:hover > th{
+	background-color: #FFFFB2;
+}
+
+.themes_list{
+	text-align: center;
+}
+.themes_list img{
+	border: 1px solid #ddd;
+	margin-bottom: 5px;
+}
+.themes_list  li{
+	padding: 10px;
+	width: 200px;
+	height: 200px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	float: left;
+}
+.themes_list input[type=text]{
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+#coverArea{
+	margin-bottom: 10px;
+}

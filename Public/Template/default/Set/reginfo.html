@@ -1,0 +1,148 @@
+<form class="form-horizontal" role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setReginfo')}" enctype="multipart/form-data">
+
+<!-- 
+	<table class="table table-hover">
+		<tbody>
+
+			<tr>
+				<td>
+					<label for="exampleInputImgavatar1" class="col-sm-12 control-label">允许注册</label>
+				</td>
+				<td>
+					<div class="radio">
+						<label><input type="radio" name="" value="1" /> 开启</label>
+						&nbsp;
+						<label><input type="radio" name="" value="0" /> 关闭</label>
+					</div>
+				</td>
+				<td><div class="help-block control-label">如遇特殊情况可关闭注册来防止攻击</div></td>
+			</tr>
+		</tbody>
+
+	</table> -->
+
+	<table class="table table-hover">
+		<tbody>
+			<tr>
+				<th>&nbsp;</th>
+				<th>启用该项</th>
+				<th>注册时展示</th>
+				<th>必须填写</th>
+				<th>&nbsp;</th>
+			</tr>
+
+			<tr>
+				<td>用户名</td>
+				<td>
+					<input type="checkbox" name="username_true" value="1" <if condition="$reginfoArr['username_true']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="username_reg" value="1" <if condition="$reginfoArr['username_reg']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="username_must" value="1" <if condition="$reginfoArr['username_must']">checked</if> />
+				</td>
+				<td><span class="help-block">可用于登录的用户ID</span></td>
+			</tr>
+
+			<tr>
+				<td>电子邮箱</td>
+				<td>
+					<input type="checkbox" name="email_true" value="1" <if condition="$reginfoArr['email_true']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="email_reg" value="1" <if condition="$reginfoArr['email_reg']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="email_must" value="1" <if condition="$reginfoArr['email_must']">checked</if> />
+				</td>
+				<td><span class="help-block">可用于登录的电子邮箱</span></td>
+			</tr>
+
+			<tr>
+				<td>手机号码</td>
+				<td>
+					<input type="checkbox" name="phone_true" value="1" <if condition="$reginfoArr['phone_true']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="phone_reg" value="1" <if condition="$reginfoArr['phone_reg']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="phone_must" value="1" <if condition="$reginfoArr['phone_must']">checked</if> />
+				</td>
+				<td><span class="help-block">可用于登录的手机号码</span></td>
+			</tr>
+
+			<tr>
+				<td>昵称</td>
+				<td>
+					<input type="checkbox" name="realname_true" value="1" <if condition="$reginfoArr['realname_true']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="realname_reg" value="1" <if condition="$reginfoArr['realname_reg']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="realname_must" value="1" <if condition="$reginfoArr['realname_must']">checked</if> />
+				</td>
+				<td><span class="help-block">用户昵称或真实姓名显示</span></td>
+			</tr>
+
+			<tr>
+				<td>性别</td>
+				<td>
+					<input type="checkbox" name="gender_true" value="1" <if condition="$reginfoArr['gender_true']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="gender_reg" value="1" <if condition="$reginfoArr['gender_reg']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="gender_must" value="1" <if condition="$reginfoArr['gender_must']">checked</if> />
+				</td>
+				<td><span class="help-block"></span></td>
+			</tr>
+
+
+			<tr>
+				<td>年龄</td>
+				<td>
+					<input type="checkbox" name="age_true" value="1" <if condition="$reginfoArr['age_true']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="age_reg" value="1" <if condition="$reginfoArr['age_reg']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="age_must" value="1" <if condition="$reginfoArr['age_must']">checked</if> />
+				</td>
+				<td><span class="help-block"></span></td>
+			</tr>
+
+<!-- 			<tr>
+				<td>所在地区</td>
+				<td>
+					<input type="checkbox" name="area_true" value="1" <if condition="$reginfoArr['area_true']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="area_reg" value="1" <if condition="$reginfoArr['area_reg']">checked</if> />
+				</td>
+				<td>
+					<input type="checkbox" name="area_must" value="1" <if condition="$reginfoArr['area_must']">checked</if> />
+				</td>
+				<td><span class="help-block">国家 - 省份 - 市</span></td>
+			</tr> -->
+
+			
+		</tbody>
+
+	</table>
+
+	<p class="help-block">* 建议启用电子邮箱, 否则将无法使用找回密码功能</p>
+	<hr>
+	<div class="setBchange">
+
+		<input type="hidden" value="{$ref}" name="ref" />
+		<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+	</div>
+
+
+
+</form>

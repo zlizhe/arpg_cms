@@ -1,0 +1,115 @@
+<form class="form-horizontal" role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setSetting')}" enctype="multipart/form-data">
+
+
+	<table class="table table-hover">
+		<tbody>
+
+			<tr>
+				<td>
+					<label for="exampleInputSitename1" class="col-sm-12 control-label">网站名称</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputSitename1" placeholder="网站名称" name="site_name" value="{$settingArr['site_name']}" maxlength="50">
+				</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputSiteurl1" class="col-sm-12 control-label">网站域名</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputSiteurl1" placeholder="网站域名"  name="site_url" value="{$settingArr['site_url']}" maxlength="100">
+				</td>
+				<td><div class="help-block control-label">结尾请勿加 / 如 http://cms.zlizhe.com</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputMailserver1" class="col-sm-12 control-label">邮件服务器</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputMailserver1" placeholder="邮件服务器"  name="mail_server" value="{$settingArr['mail_server']}" maxlength="100">
+				</td>
+				<td><div class="help-block control-label">如 QQ企业邮箱 smtp.exmail.qq.com</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputMailusername1" class="col-sm-12 control-label">发件邮箱</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputMailusername1" placeholder="发件邮箱"  name="mail_username" value="{$settingArr['mail_username']}" maxlength="20">
+				</td>
+				<td><div class="help-block control-label">如 cms@zlizhe.com</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputMailpassword1" class="col-sm-12 control-label">发件密码</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputMailpassword1" placeholder="发件密码"  name="mail_password" value="{$settingArr['mail_password']}" maxlength="20">
+				</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputImgurl1" class="col-sm-12 control-label">图片域名(路径)</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputImgurl1" placeholder="图片域名(路径)"  name="img_url" value="{$settingArr['img_url']}" maxlength="25">
+				</td>
+				<td><div class="help-block control-label">如未设置二级域名则使用路径即可</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputImgavatar1" class="col-sm-12 control-label">头像域名</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputImgavatar1" placeholder="头像域名"  name="img_avatar" value="{$settingArr['img_avatar']}" maxlength="25">
+				</td>
+				<td><div class="help-block control-label">如未设置二级域名则使用路径即可</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputAnalytics1" class="col-sm-12 control-label">第三方统计代码</label>
+				</td>
+				<td>
+					<textarea maxlength="200" name="analytics" class="form-control" cols="30" rows="3" id="exampleInputAnalytics1" style="resize: vertical;">{$settingArr['analytics']|htmlspecialchars_decode}</textarea>
+				</td>
+				<td><div class="help-block control-label">添加第三方统计代码</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label class="col-sm-12 control-label">是否关闭网站</label>
+				</td>
+				<td>
+					<div class="radio">
+						<label><input type="radio" name="siteopen" value="1" <if condition="$settingArr['siteopen'] == 1">checked</if> /> 开启</label>
+						&nbsp;
+						<label><input type="radio" name="siteopen" value="0" <if condition="$settingArr['siteopen'] == 0">checked</if> /> 关闭</label>
+					</div>
+				</td>
+				<td><div class="help-block control-label">关闭后仅允许有超级访问权限的角色访问</div></td>
+			</tr>
+
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="hidden" value="{$ref}" name="ref" />
+					<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+				</td>
+				<td></td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+
+</form>

@@ -1,0 +1,76 @@
+
+<if condition="!$slideArr">
+
+	<blockquote>没有找到信息</blockquote>
+	
+<else />
+	
+	<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setEditAllSlide')}" enctype="multipart/form-data">
+
+	<table class="table table-hover">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>顺序</th>
+				<th>图片</th>
+				<th>链接</th>				
+				<th>新窗口</th>				
+			</tr>
+		</thead>
+
+		<tbody>
+			<foreach name="slideArr" item="value">
+				<tr>
+					<td><input type="checkbox" name="del[]" id="checkOn" value="{$value[id]}"></td>
+					
+					<td class="col-xs-1"><input type="text" class="form-control input-mini" value="{$value['sort']}" name="sort[{$value[id]}]" /></td>
+
+					<td width="60%">
+						<img src="{$value['img_url']}" style="width: 100%;" />
+					</td>
+					<td>
+					    <input type="text" class="form-control input-mini" value="{$value['link']}" name="link[{$value['id']}]" />
+					</td>
+					<td class="text-center">
+						<input type="checkbox" name="target[{$value['id']}]" value="1" <if condition="$value['target']">checked</if>>
+					</td>
+				</tr>
+				<input type="hidden" value="{$value['id']}" name='id[]' >
+			</foreach>
+
+		</tbody>
+
+	</table>
+
+
+	<hr>
+	<div class="setBchange">
+		<label for="chk_all" class="control-label">
+			<input id="chk_all" class="pc vm" type="checkbox" name="chk_all" /> 删?
+		</label>
+		&nbsp;
+		<input type="hidden" value="{$ref}" name="ref" />
+		<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+	</div>
+	</form>
+
+</if>
+
+
+{// 上传图片表单}
+<form action="{:U('/set/ajax/uploadSlide')}" class="form-horizontal hide" method="post" target="actionfrm" id="cover_form" name="cover_form" enctype="multipart/form-data">
+	<input type="file" id="cover_start" name="cover_img" />
+</form>
+<script>
+	//打开普通 上传窗口	
+	function showUpload() {
+		$("#cover_start").click();
+	}
+	//开始上传动作
+	$('input#cover_start').change(function(){
+		//ON LOADING
+    	showWindow('/index.php/dialog/dialog/uploading');
+		$("#cover_form").submit();
+	});
+</script>

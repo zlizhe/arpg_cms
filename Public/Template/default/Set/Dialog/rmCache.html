@@ -1,0 +1,35 @@
+<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setAddThemes')}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">清理缓存文件</h4>
+		</div>
+		<div class="modal-body">
+
+				<div class="form-group text-center">
+					<div id="status">
+						<img src="/img/loading.gif" alt="">
+						<p>正在清理缓存...</p>
+					</div>
+			    </div>
+			
+
+		</div>
+		<div class="modal-footer hide">
+
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	    </div>
+	</div>
+</div>
+</form>
+
+<script>
+	$.getJSON("/index.php/set/ajax/rmCache/type/{$type}", {},function(result){   
+		if(result.status == 'success'){
+			successMsg("操作成功, 正在跳转...", '<?= $ref?>');
+		}else{
+			errorMsg(result.msg);
+		}
+	});
+</script>

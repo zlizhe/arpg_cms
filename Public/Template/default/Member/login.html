@@ -1,0 +1,60 @@
+<include file="Common/header" />
+	
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-md-4"></div>
+
+			<div class="col-md-4">
+				<h3 class="text-center">{$seoSetting['title']}</h3>
+
+				<hr>
+				<form role="form" method="post" target="actionfrm" action="{:U('Member/Ajax/setLogin')}" enctype="multipart/form-data">
+					<div class="form-group">
+				    	<label for="exampleInputEmail1">账号</label>
+				    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="账号" name="email" value="{$user}">
+					</div>
+					
+					<div class="form-group">
+				    	<label for="exampleInputPassword1">密码</label>
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password" value="">
+					</div>
+
+					<div class="form-group hide login-captcha">
+				    	<label for="exampleInputVerify">验证字符</label>
+				    	<div class="clearfix"></div>
+				    	<a href="javascript:getCaptcha();" id="captcha" title="看不清? 点击换一张" ><img src="__PUBLIC__/img/loading.gif" alt="正在生成验证图片" /></a>
+				    	<div class="clearfix"></div>
+				    	<br>
+						<input type="text" class="form-control" id="exampleVerify" placeholder="输入您看到的字符" name="verify">
+					</div>
+
+					
+					<div class="checkbox">
+					    <label>
+					    	<input type="checkbox" checked="" value="1" name="autologin"> 记住登录状态
+					    </label>
+					</div>
+					
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary" data-loading-text="Loading...">登录</button>
+						<a href="{:U('/member/forgot')}" class="btn btn-link">忘记密码?</a>
+					</div>
+
+					<input type="hidden" value="{$ref}" name="ref" />
+				</form>
+
+				<hr>
+				<div class="clearfix"></div>
+				<p class="text-right"><span class="glyphicon glyphicon-question-sign"></span> <a href="{:U('/member/register')}">还没有账号? 立即注册</a></p>
+				
+			</div>
+
+			<div class="col-md-4"></div>
+		</div>
+
+	</div>
+<script>
+	getCaptcha();
+</script>
+<include file="Common/footer" />

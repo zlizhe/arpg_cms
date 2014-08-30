@@ -1,0 +1,58 @@
+<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setAddThemes')}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">添加新主题</h4>
+		</div>
+		<div class="modal-body">
+
+				<div class="form-group">
+					<select name="ac" class="form-control">
+						<option value="1">导入已下载主题</option>
+						<option value="2">创建新主题(开发者专用)</option>
+					</select>
+			    </div>
+
+				<div class="form-group">
+			    	<label for="InputName1">主题名称</label>
+			    	<input type="text" class="form-control" id="InputName1" placeholder="主题名称" value="{$themesArr[name]}" name="name">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputPathname1">文件夹名称</label>
+			    	<input type="text" class="form-control" id="InputPathname1" placeholder="文件夹名称" value="{$themesArr[path_name]}" name="path_name">
+				</div>
+				
+				<div class="help-block">主题文件夹位于 /Public/Template/ 下, 导入已下载主题时文件夹名称请直接填写名称无需/, 如默认主题为 default</div>
+				<input type="hidden" value="{$ref}" name="ref" />
+			
+
+		</div>
+		<div class="modal-footer">
+
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        	<button type="submit" class="btn btn-primary" data-loading-text="Loading...">保存</button>
+	    </div>
+	</div>
+</div>
+</form>
+
+
+<script>
+	
+	//点击后 清除 INPUT HAS-ERROR 的状态
+	$("input[type='password'],input[type='text'],input[type='email']").click(function(){
+		hidePopOnly($(this));
+	});	
+
+	/* 按钮状态显示  */
+	$('button[data-loading-text]').click(function () {
+	    var btn = $(this).button('loading');
+	    setTimeout(function () {
+	        btn.button('reset');
+	    }, 3000);
+	});
+	
+</script>

@@ -1,0 +1,131 @@
+/**
+ * 	Powered by ARPG TEAM.
+ * 	http://web.zlizhe.com
+ *  全局CSS
+ */
+
+/* 禁止响应式 */
+/*.container{
+    width: 1200px !important;
+}*/
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px
+}
+
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0
+}
+
+.bs-callout code {
+    border-radius: 3px
+}
+
+.bs-callout+.bs-callout {
+    margin-top: -5px
+}
+
+.bs-callout-danger {
+    border-left-color: #d9534f
+}
+
+.bs-callout-danger h4 {
+    color: #d9534f
+}
+
+.bs-callout-warning {
+    border-left-color: #f0ad4e
+}
+
+.bs-callout-warning h4 {
+    color: #f0ad4e
+}
+
+.bs-callout-info {
+    border-left-color: #5bc0de
+}
+
+.bs-callout-info h4 {
+    color: #5bc0de
+}
+
+#ajax_loading{
+	display:none;
+	right:0;
+	position:fixed;
+	color:#FFF;
+	background-color:#FF0000;
+	top:0px;
+}
+.help-block{
+	font-size: 12px;
+}
+#captcha{
+    display: block;
+}
+
+.loading{
+    padding:50px;
+    display: block;
+}
+.loading i{
+    background: url("/img/loading.gif") no-repeat;
+    width: 46px;
+    height: 46px;
+    display: inline-block;
+}
+
+.pagination-centered {
+  text-align: center;
+}
+
+.pagination-right {
+  text-align: right;
+}
+.del{
+    color: red;
+}
+
+/*#query{
+    -moz-transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+    width: 200px;
+}
+
+#query:focus{
+    width: 300px;
+}*/
+#dialog{
+    z-index: 1050;
+}
+#errorMsg{
+    z-index: 1060;
+}
+
+.input-mini{
+    height: 24px;
+}
+.copyright a, .copyright{
+    color: #555;
+}
+.copyright p{
+    font-weight: 600;
+}
+#top_avatar{
+    width: 30px;
+    height: 30px;
+}
+.userList > li > a{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}

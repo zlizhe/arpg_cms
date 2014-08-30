@@ -1,0 +1,127 @@
+
+<div class="panel-group" id="accordion">
+
+    <if condition="isPurview('setPart1', false, false)">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <h4 class="panel-title">
+                        全局
+                    </h4>
+                </a>
+                
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse <if condition="$setPart == 1">in</if>">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked" role="tablist">
+                        <if condition="isPurview('Set_Set_setting', false, false)">
+                            <li <?php if ($action == 'setting'){?>class="active"<?php }?>><a href="{:U('/set/setting')}">网站设置</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_reginfo', false, false)">
+                            <li <?php if ($action == 'reginfo'){?>class="active"<?php }?>><a href="{:U('/set/reginfo')}">注册控制</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_user', false, false)">
+                            <li <?php if ($action == 'user'){?>class="active"<?php }?>><a href="{:U('/set/user')}">会员管理</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_competence', false, false)">
+                            <li <?php if ($action == 'competence'){?>class="active"<?php }?>><a href="{:U('/set/competence')}">权限设置</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_group', false, false)">
+                            <li <?php if ($action == 'group'){?>class="active"<?php }?>><a href="{:U('/set/group')}">角色管理</a></li>
+                        </if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </if>
+    
+    <if condition="isPurview('setPart2', false, false)">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <h4 class="panel-title">
+                        界面
+                    </h4>
+                </a>
+                
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse <if condition="$setPart == 2">in</if>">
+                <div class="panel-body">
+
+                    <ul class="nav nav-pills nav-stacked" role="tablist">
+                        <if condition="isPurview('Set_Set_slide', false, false)">
+                            <li <?php if ($action == 'slide'){?>class="active"<?php }?>><a href="{:U('/set/slide')}">首页滚动图片</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_nav', false, false)">
+                            <li <?php if ($action == 'nav'){?>class="active"<?php }?>><a href="{:U('/set/nav')}">导航设置</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_themes', false, false)">
+                            <li <?php if ($action == 'themes'){?>class="active"<?php }?>><a href="{:U('/set/themes')}">主题管理</a></li>
+                        </if>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </if>
+    
+    <if condition="isPurview('setPart3', false, false)">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    <h4 class="panel-title">
+                        内容
+                    </h4>
+                </a>
+                
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse <if condition="$setPart == 3">in</if>">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked" role="tablist">
+                        <if condition="isPurview('Set_Set_category', false, false)">
+                            <li <?php if ($action == 'category'){?>class="active"<?php }?>><a href="{:U('/set/category')}">分类管理</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_article', false, false)">
+                            <li <?php if ($action == 'article'){?>class="active"<?php }?>><a href="{:U('/set/article')}">文章管理</a></li>
+                        </if>
+                        <if condition="isPurview('Set_Set_comment', false, false)">
+                            <li <?php if ($action == 'comment'){?>class="active"<?php }?>><a href="{:U('/set/comment')}">评论管理</a></li>
+                        </if>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </if>
+<!-- 
+    <if condition="isPurview('setPart4', false, false)">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                    <h4 class="panel-title">
+                        接口
+                    </h4>
+                </a>
+                
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse <if condition="$setPart == 4">in</if>">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked" role="tablist">
+                        <if condition="isPurview('Set_Set_oss', false, false)">
+                            <li <?php if ($action == 'oss'){?>class="active"<?php }?>><a href="{:U('/set/oss')}">OSS上传</a></li>
+                        </if>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </if> -->
+
+    
+</div>

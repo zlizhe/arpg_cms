@@ -1,0 +1,72 @@
+<div class="row">
+	<ol class="breadcrumb">
+		<li><a href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li><a href="/{$categoryArr['path_name']}">{$categoryArr['value']}</a></li>
+		<li class="active">{$articleArr['title']}</li>
+	</ol>
+</div>
+
+<div class="row">
+	
+	<div class="col-md-8">
+		<div class="page-header">
+			<h1>{$articleArr['title']}</h1>
+			<small>[ 浏览数: {$articleArr['view_num']} 评论数: {$articleArr['comment_num']} 发布时间: {$articleArr[created_at]|date="Y-m-d",###} 作者: {$profileArr['realname']}]</small>
+		</div>
+
+		<article>
+<!-- 			<if condition="$articleArr['cover_img']">
+				<div class="text-center">
+					<img src="{$articleArr['cover_img']}" class="img-thumbnail">
+				</div>
+			</if> -->
+
+			{$articleArr['content']|htmlspecialchars_decode}
+		</article>
+
+		{//分享到社交网站}
+		
+		{//TAGS}
+		<if condition="$tagsArr">
+			<blockquote>标签</blockquote>
+			<ul class="list-unstyled list-inline tags">
+				<foreach name="tagsArr" item="value">
+					<li><a href="{:U('/search', array('query'=>$value))}" target="_blank">{$value}</a></li>
+				</foreach>
+			</ul>
+
+		</if>
+
+		{//前后文章}
+		<ul class="pager">
+			<if condition="$beforeArr">
+				<li class="previous"><a href="{:U('/article', array($beforeArr['id']=>$beforeArr['title']))}">&larr; {$beforeArr['title']}</a></li>
+			</if>
+			<if condition="$afterArr">
+				<li class="next"><a href="{:U('/article', array($afterArr['id']=>$afterArr['title']))}">{$afterArr['title']} &rarr;</a></li>
+			</if>
+		</ul>
+
+
+		{//评论区 AJAX 加载}
+		<include file="Index/comment" />
+	</div>
+
+	<div class="col-md-4">
+		<aside>
+			<include file="Index/side" />
+		</aside>
+	</div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+	//页面载入后 记录历史和点击数
+    $("article").after(function(){
+    	//setHistory();
+    	//CLICK
+    	setPlus(<?= $articleArr['id']?>, 'view_num');
+    });
+});
+</script>

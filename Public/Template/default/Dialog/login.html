@@ -1,0 +1,67 @@
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title"><if condition="$ref">您需要登录才能继续...<else />用户登录</if></h4>
+		</div>
+		<div class="modal-body">
+			<form role="form" method="post" target="actionfrm" action="{:U('Member/Ajax/setLogin')}" enctype="multipart/form-data">
+				<div class="form-group">
+			    	<label for="exampleInputEmail1">账号</label>
+			    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="账号" name="email" value="{$user}">
+				</div>
+				
+				<div class="form-group">
+			    	<label for="exampleInputPassword1">密码</label>
+					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password" value="">
+				</div>
+
+				<div class="form-group hide login-captcha">
+			    	<label for="exampleInputVerify">验证字符</label>
+			    	<div class="clearfix"></div>
+			    	<a href="javascript:getCaptcha();" id="captcha" title="看不清? 点击换一张" ><img src="__PUBLIC__/img/loading.gif" alt="正在生成验证图片"/></a>
+			    	<div class="clearfix"></div>
+			    	<br>
+					<input type="text" class="form-control" id="exampleVerify" placeholder="输入您看到的字符" name="verify">
+				</div>
+
+				
+				<div class="checkbox">
+				    <label>
+				    	<input type="checkbox" checked="" value="1" name="autologin"> 记住登录状态
+				    </label>
+				</div>
+				
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" data-loading-text="Loading...">登录</button>
+					<a href="{:U('/member/forgot')}" class="btn btn-link">忘记密码?</a>
+				</div>
+
+				<input type="hidden" value="{$url}" name="ref" />
+			</form>
+		</div>
+		<div class="modal-footer">
+			<p class="pull-right"><span class="glyphicon glyphicon-question-sign"></span> <a href="{:U('/member/register')}">还没有账号? 立即注册</a></p>
+	    </div>
+	</div>
+</div>
+    
+<script>
+//输出验证码
+getCaptcha();
+
+//点击后 清除 INPUT HAS-ERROR 的状态
+$("input[type='password'],input[type='text'],input[type='email']").click(function(){
+	hidePopOnly($(this));
+});
+
+/* 按钮状态显示  */
+$('button[data-loading-text]').click(function () {
+    var btn = $(this).button('loading');
+    setTimeout(function () {
+        btn.button('reset');
+    }, 3000);
+});
+
+
+</script>

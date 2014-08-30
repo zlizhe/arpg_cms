@@ -1,0 +1,114 @@
+<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setEditArticle')}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-header">
+			<a class="close" href="{:U('/set/article')}" title="取消"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
+			<h4 class="modal-title">
+				{$title}
+			</h4>
+		</div>
+		<div class="modal-body">
+
+				<div class="form-group">
+			    	<label for="InputTitle1"><font color="red">*</font> 标题</label>
+			    	<input type="text" class="form-control" id="InputTitle1" placeholder="标题" value="{$articleArr['title']}" name="title" maxlength="20">
+				</div>
+
+				<div class="form-group">
+					<label for="InputCategory1"><font color="red">*</font> 分类</label>
+					<select name="category" class="form-control" id="InputCategory1">
+						<foreach name="catList" item="value" >
+							<option value="{$value['id']}" <if condition="$articleArr['cat_id'] == $value['id']">selected</if>>{$value['value']}</option>
+						</foreach>
+					</select>
+			    </div>
+
+				<div class="form-group">
+			    	<label>封面图片</label>
+			    	<div class="clearfix"></div>
+
+					<div id="coverArea">
+						<if condition="$articleArr['cover_img']">
+							<img src="{$articleArr['cover_img']}" class="img-thumbnail" />
+						</if>
+					</div>
+
+					<div class="clearfix"></div>
+					<input type="hidden" value="{$articleArr['cover_img']}" name="coverImg" id="coverImg" />
+					<a href="javascript:showUpload();" class="btn btn-default btn-sm">浏览图片...</a>
+					<a href="javascript:removeUpload();" class="btn btn-danger btn-sm <if condition="!$articleArr['cover_img']">hide</if>" id="removeUpbtn"><span class="glyphicon glyphicon-trash"></span> 移除图片</a>
+					
+				</div>
+
+				<div class="form-group">
+			    	<label for="arpgEditor"><font color="red">*</font> 内容</label>
+			    	<div class="clearfix"></div>
+		        	<textarea name="content" id="arpgEditor">{:htmlspecialchars_decode($articleArr['content'])}</textarea>
+				</div>
+
+				<div class="form-group">
+					<label>标签</label>
+					<div class="clearfix"></div>
+	                <select multiple name="tags_arr[]" data-role="tagsinput" placeholder="Enter 键分割多个标签                ">
+	                	<foreach name="tags" item="value" >
+							<option value="{$value}" selected="selected">{$value}</option>
+							{$value}
+						</foreach>
+	                </select>
+	                <span class="help-block">Enter 键分割多个标签</span>   
+			    </div>
+
+				<input type="hidden" value="{$ac}" name="ac" />
+				<input type="hidden" value="{$articleArr['id']}" name="aid" />
+			
+
+		</div>
+		<div class="modal-footer">
+        	<button type="submit" class="btn btn-primary" data-loading-text="Loading..."><if condition="$ac == 'add'">发布<else />更新</if></button>
+	    </div>
+	</div>
+</div>
+
+</form>
+
+<script type="text/javascript" src="/plugin/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/plugin/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editor = new UE.ui.Editor();
+    editor.render("arpgEditor");
+</script>
+
+<link rel="stylesheet" href="/css/bs-tagsinput.css" />
+<script type="text/javascript" src="/js/bs-tagsinput.js"></script>
+
+{// 上传封面图片表单}
+<form action="{:U('/set/ajax/uploadImg')}" class="form-horizontal hide" method="post" target="actionfrm" id="cover_form" name="cover_form" enctype="multipart/form-data">
+	<input type="file" id="cover_start" name="cover_img" />
+</form>
+<script>
+	//打开普通 上传窗口	
+	function showUpload() {
+		$("#cover_start").click();
+	}
+	//开始上传动作
+	$('input#cover_start').change(function(){
+		//ON LOADING
+    	showWindow('/index.php/dialog/dialog/uploading');
+		$("#cover_form").submit();
+	});
+
+	//移除已上传的图片
+	function removeUpload() {
+		$("#coverArea").find('img').remove();
+        $("#coverImg").val('');
+        $("#removeUpbtn").hide();
+	}
+    // 设置封面图片
+    function successCut(img) {
+        $('#dialog').modal('hide');
+        $("#coverArea").html('<img src="' + img + '" class="img-thumbnail" />');
+        $("#coverImg").val(img);
+        $("#removeUpbtn").show();
+    }
+</script>

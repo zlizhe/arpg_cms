@@ -1,0 +1,62 @@
+<include file="Common/header" />
+
+<include file="Common/header_common" />
+
+<div class="container">
+	<include file="Common/nav" />
+	
+	<div class="row">
+		
+		<ol class="breadcrumb">
+			<li><a href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a></li>
+			<li class="active">{$title}</li>
+		</ol>
+		
+	</div>
+
+	<div class="row">
+
+		{__CONTENT__}
+
+		<div class="col-md-4">
+
+			<div class="row">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">
+								{$membersArr['realname']}
+							</h4>
+						</div>
+						<div class="modal-body text-center">
+							<img src="{$_Gset['IMG_AVATAR']}{$membersArr['uid']}/{$membersArr['uid']}_big.jpg" class="img-thumbnail" />
+						
+							<div class="clearfix"></div>
+							
+							<ul class="list-inline">
+								<if condition="$membersArr['age']">
+									<li>年龄: {$membersArr['age']}</li>
+								</if>
+								<if condition="$membersArr['gender']">
+									<li>性别: <if condition="$membersArr['gender'] == 1">男</if><if condition="$membersArr['gender'] == 2">女</if></li>
+								</if>
+							</ul>
+							
+
+						</div>
+						
+						<if condition="$_Guser['uid'] == $uid">
+							<div class="modal-footer">
+								<a href="{:U('/space/setup/app/2')}" class="btn"><span class="glyphicon glyphicon-user"></span> 修改头像</a>
+								<a href="{:U('/space/setup/app/3')}" class="btn"><span class="glyphicon glyphicon-wrench"></span> 编辑资料</a>
+							</div>
+						</if>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Common/footer" />

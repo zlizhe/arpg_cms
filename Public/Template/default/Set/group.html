@@ -1,0 +1,40 @@
+
+<if condition="!$groupArr">
+
+	<blockquote>没有找到信息</blockquote>
+	
+<else />
+
+	<table class="table table-hover">
+
+		<thead>
+			<tr>
+				<th>角色名称</th>
+				<th>备注</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<foreach name="groupArr" item="value">
+				<tr>
+					<td>{$value['value']}</td>
+					<td>{$value['note']}</td>
+					<td>
+						<a href="{:U('/set/dialog/editGroup', array('gid'=>$value[id],'ref'=>$ref,'ac'=>'edit'))}" class="btn btn-default btn-xs" id="showWindow"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+						<a href="javascript:;" onclick="arpgDel(<?= $value[id]?>, '<?= $value[value]?>', 'setDelGroup');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+					</td>
+				</tr>
+			</foreach>
+
+		</tbody>
+
+	</table>
+
+	<blockquote>
+		<h5><span class="glyphicon glyphicon-info-sign"></span> 说明</h5>
+		<small>通过网站功能可调整新注册用户的默认角色</small>
+		<small>通过会员管理，赋予用户特定角色来实现权限分层</small>
+	</blockquote>
+
+</if>

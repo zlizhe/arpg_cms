@@ -1,0 +1,106 @@
+/* ARPG CSS */
+.top_logo{
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+.top_logo a{
+	display: block;
+}
+.tags a{
+	border: 1px
+	solid #FAFAFA;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #999;
+	margin: 0 7px 7px 0;
+	padding: 4px 9px 2px;
+	text-transform: lowercase;
+	text-decoration: none;
+	display: block;
+	font-size: 14px;
+}
+.tags a:hover{
+	border:1px solid #C7C7C7;background:#fff
+}
+.comment_area{
+	resize: vertical;
+	width: 100%;
+	/*height: 100px;*/
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 4px 6px;
+}
+textarea:focus{
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+.comment_msgs img{
+	width: 40px;
+	height: 40px;
+}
+#showMsg li{
+	border-bottom: 1px solid #eee;
+}
+.comment_replay{
+	margin-bottom: 10px;
+	width: 90%;
+	float: right;
+}
+.replay_area{
+	border: 1px dotted #DEE4E9;
+	background: #FBFBFB;
+	padding: 15px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.summary a{
+	color: #666;
+}
+
+/* 首页分类相关 开始 */
+.index_cat{
+	width: 100%;
+	float: left;
+}
+
+@media (min-width: 750px) {
+	.index_cat{
+		width: 375px;
+	}
+}
+
+@media (min-width: 970px) {
+	.index_cat{
+		width: 323px;
+	}
+}
+
+@media (min-width: 1170px) {
+	.index_cat{
+		width: 390px;
+	}
+}
+
+@media (max-width: 750px) {
+	.top_nav{
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 9;
+	}
+	.top_logo{
+		display: none;
+	}
+	header{
+		height: 56px;
+	}
+}
+/* 首页分类相关 结束 */
+
+.main_search{
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+

@@ -1,0 +1,73 @@
+<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setEditGroup')}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">
+				<if condition="$ac == 'add'">
+				新增角色
+				<else />
+				编辑角色 "{$groupArr['value']}"
+				</if>
+			</h4>
+		</div>
+		<div class="modal-body">
+
+				<div class="form-group">
+			    	<label for="InputValue1"><em>*</em> 角色名称</label>
+			    	<input type="text" class="form-control" id="InputValue1" placeholder="角色名称" value="{$groupArr['value']}" name="value" maxlength="15">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputNote1">备注</label>
+			    	<input type="text" class="form-control" id="InputNote1" placeholder="备注" value="{$groupArr['note']}" name="note" maxlength="100">
+				</div>
+
+				<div class="form-group">
+			    	<label>权限设置</label>
+
+					<foreach name="competenceArr" item="value" >
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="actions[]" value="{$value['action']}" <if condition="$groupArr['in_actions']"><if condition="in_array($value['action'], $groupArr['in_actions'])">checked</if></if> > {$value['value']}
+							</label>
+						</div>
+					</foreach>
+
+				</div>
+
+				<div class="help-block">请了解各权限的可操作范围后在进行权限设置, 错误的权限设置可能会造成严重的后果!</div>
+
+				<input type="hidden" value="{$groupArr['id']}" name="gid" />
+				<input type="hidden" value="{$ref}" name="ref" />
+				<input type="hidden" value="{$ac}" name="ac" />
+			
+
+		</div>
+		<div class="modal-footer">
+
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        	<button type="submit" class="btn btn-primary" data-loading-text="Loading...">保存</button>
+	    </div>
+	</div>
+</div>
+</form>
+
+<script>
+
+	//点击后 清除 INPUT HAS-ERROR 的状态
+	$("input[type='password'],input[type='text'],input[type='email']").click(function(){
+		hidePopOnly($(this));
+	});	
+
+	
+	/* 按钮状态显示  */
+	$('button[data-loading-text]').click(function () {
+	    var btn = $(this).button('loading');
+	    setTimeout(function () {
+	        btn.button('reset');
+	    }, 3000);
+	});
+	
+</script>

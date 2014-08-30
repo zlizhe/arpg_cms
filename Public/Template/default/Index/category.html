@@ -1,0 +1,90 @@
+
+
+<div class="row">
+	<ol class="breadcrumb">
+		<li><a href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li class="active">{$categoryArr['value']}</li>
+	</ol>
+</div>
+
+<div class="row">
+
+	<div class="col-md-12">
+		<div class="page-header">
+			
+			<blockquote><h4>{$categoryArr['value']}</h4> 
+				<if condition="$articleArr['how']">
+					<small>共 {$articleArr['how']} 篇文章</small>
+				<else />
+					<small>该栏目还没有文章</small>
+				</if>
+			<if condition="$query">
+				<small>
+				<span class="label label-primary">
+				关键词: "{$query}" <a href="{:U($urlName, array('query'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a> 
+				</span>
+				</small>
+			</if>
+			</blockquote>
+
+		</div>
+	</div>
+	
+	<div class="col-md-8">
+
+	
+		{// 分类列表}
+		<article>
+			<ul class="media-list">
+				<foreach name="articleArr['row']" item="value">
+	                <li class="media">
+	                	<if condition="$value['cover_img']">
+		                    <a class="pull-left" href="/article/{$value['id']}/{$value['title']}">
+		                        <img class="media-object img-rounded" src="{$value['cover_img']}" />
+		                    </a>
+	                    </if>
+	                    <div class="media-body">
+	                        <h3 class="media-heading">
+	                            <a href="/article/{$value['id']}/{$value['title']}">{$value['title']}</a>
+	                        </h3>
+	                        <small>[ 浏览数: {$value['view_num']} 评论数: {$value['comment_num']} 发布时间: {$value[created_at]|date="Y-m-d H:i:s",###} 作者: {$value['realname']}]</small>
+							<p class="summary">
+								<a href="/article/{$value['id']}/{$value['title']}">
+		                        {$value['summary']}
+		                        </a>
+	                        </p>
+	                    </div>
+						<if condition="$value['tags_arr']">
+		                    <div class="pull-right">
+								<ul class="list-unstyled list-inline tags">
+									<foreach name="value['tags_arr']" item="value2">
+										<li><a href="{:U($urlName, array('query'=>$value2))}">{$value2}</a></li>
+									</foreach>
+								</ul>
+		                    </div>
+	                    </if>
+	                </li>
+				</foreach>
+			</ul>
+		</article>
+
+
+		<div class="pagination-centered">
+			<ul class="pagination pagination-sm">
+				<if condition="$articleArr['mulitpage']">
+					{$articleArr['mulitpage']}
+				<else />
+					<li>&nbsp;</li>
+				</if>
+			</ul>
+		</div>
+
+
+	</div>
+
+	<div class="col-md-4">
+		<aside>
+			<include file="Index/side" />
+		</aside>
+	</div>
+</div>

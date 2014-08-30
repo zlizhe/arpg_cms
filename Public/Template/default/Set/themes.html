@@ -1,0 +1,53 @@
+
+<if condition="!$themesArr">
+
+	<blockquote>没有找到信息</blockquote>
+	
+<else />
+	
+	<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setEditThemes')}" enctype="multipart/form-data">
+
+	
+	<ul class="list-unstyled themes_list">
+		<foreach name="themesArr" item="value">
+		<li>
+			<div class="">
+				<img src="{$value['preview']}" title="{$value['name']}" />
+			</div>
+			<div class="">
+				<label>
+					<input type="radio" value="{$value['id']}" name="theme" <if condition="$site_themes == $value['path_name']">checked</if>> 启用
+				</label>
+				<if condition="$value[path_name] != 'default'">
+				<label>
+					<input type="checkbox" id="checkOn" value="{$value['id']}" name="del[]"> 卸载
+				</label>
+				</if>
+			</div>
+			<div class="clear"></div>
+			<p>{$value['name']}</p>
+
+		</li>
+		</foreach>
+	</ul>
+
+	
+	<div class="clearfix"></div>
+	<hr>
+	<div class="setBchange">
+		<label for="chk_all" class="control-label">
+			<input id="chk_all" type="checkbox" name="chk_all" /> 删?
+		</label>
+		<!-- <label class="control-label">
+			<input type="checkbox" name="del_folder" value="1" /> 同时删除文件夹
+		</label> -->
+		&nbsp;
+		<input type="hidden" value="{$ref}" name="ref" />
+		<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+		<a class="btn btn-danger btn-sm" data-loading-text="Loading..." href="{:U('/set/dialog/rmCache', array('type'=>'Cache', 'ref'=>$ref))}" id="showWindow"><span class="glyphicon glyphicon-trash"></span> 清理模板缓存</a>
+		
+	</div>
+	</form>
+
+
+</if>

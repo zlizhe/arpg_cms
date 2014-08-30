@@ -1,0 +1,71 @@
+<form role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setEditUser')}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title">编辑会员 {$membersArr[realname]}</h4>
+		</div>
+		<div class="modal-body">
+
+				<div class="form-group">
+			    	<label for="InputRealname1">昵称</label>
+			    	<input readonly type="text" class="form-control" id="InputRealname1" placeholder="昵称" value="{$membersArr[realname]}">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputUsername1">用户名</label>
+			    	<input readonly type="text" class="form-control" id="InputUsername1" placeholder="用户名" value="{$membersArr[username]}">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputEmail1">Email</label>
+			    	<input readonly type="email" class="form-control" id="InputEmail1" placeholder="电子邮箱" value="{$membersArr[email]}">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputPhone1">手机号码</label>
+			    	<input readonly type="text" class="form-control" id="InputPhone1" placeholder="手机号码" value="{$membersArr[phone]}">
+				</div>
+				
+				<div class="form-group">
+			    	<label for="InputPassword1">新密码</label>
+					<input type="password" class="form-control" id="InputPassword1" placeholder="新密码" name="password" value="">
+				</div>
+
+				<div class="form-group">
+			    	<label for="InputGroupcom1">更改角色</label>
+					<select name="group" id="InputGroupcom1" class="form-control">
+						<foreach name="groupArr" item="value">
+							<option value="{$value[id]}" <if condition="$membersArr[groupid] == $value[id]">selected</if> >{$value[value]}</option>
+						</foreach>
+					</select>
+				</div>
+				
+
+				<input type="hidden" value="{$membersArr[uid]}" name="uid" />
+				<input type="hidden" value="{$ref}" name="ref" />
+			
+
+		</div>
+		<div class="modal-footer">
+
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        	<button type="submit" class="btn btn-primary" data-loading-text="Loading...">保存</button>
+	    </div>
+	</div>
+</div>
+</form>
+
+
+<script>
+	
+	/* 按钮状态显示  */
+	$('button[data-loading-text]').click(function () {
+	    var btn = $(this).button('loading');
+	    setTimeout(function () {
+	        btn.button('reset');
+	    }, 3000);
+	});
+	
+</script>

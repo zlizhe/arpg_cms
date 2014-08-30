@@ -1,0 +1,1 @@
+a:1:{i:1;a:6:{s:2:"id";s:1:"1";s:5:"value";s:12:"默认分类";s:4:"upid";s:1:"0";s:4:"sort";s:1:"0";s:3:"app";s:1:"1";s:9:"path_name";s:8:"category";}}

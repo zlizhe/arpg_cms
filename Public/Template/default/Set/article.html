@@ -1,0 +1,109 @@
+
+<if condition="$articleArr['how'] == 0">
+
+	<blockquote>没有找到信息</blockquote>
+	
+<else />
+	<blockquote>总共找到 {$articleArr['how']} 条信息
+	<if condition="$query">
+		<small>
+		<span class="label label-primary">
+		关键词: "{$query}" <a href="{:U($urlName, array('query'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a> 
+		</span>
+		</small>
+	</if>
+	<if condition="$cat_id">
+		<small>
+		<span class="label label-primary">
+		分类ID: "{$cat_id}" <a href="{:U($urlName, array('cat_id'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a> 
+		</span>
+		</small>
+	</if>
+
+	<if condition="$created_uid">
+		<small>
+		<span class="label label-primary">
+		发布者ID: "{$created_uid}" <a href="{:U($urlName, array('created_uid'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a> 
+		</span>
+		</small>
+	</if>
+	</blockquote>
+
+	<table class="table table-hover">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>标题</th>
+				<th>分类	</th>
+				<th>标签</th>
+				<th>发布者</th>
+				<th>发布于</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<foreach name="articleArr['row']" item="value">
+				<tr>
+					<td>
+					<if condition="$app == 1">
+						<input type="checkbox" name="arpg_check" id="checkOn" value="{$value[id]}">
+					<else />
+						{$value['id']}
+					</if>
+					</td>
+
+					<td>
+						<a href="/article/{$value['id']}/{$value['title']}" target="_blank">
+						{$value['title']}
+						<if condition="$value['cover_img']"> <span class="glyphicon glyphicon-picture"></span></if>
+						</a>
+					</td>
+					<td><a href="{:U($urlName, array('cat_id'=>$value['cat_id'],'query'=>NULL))}">{$value['cat_name']}</a></td>
+					<td>{$value['tags']}</td>
+					<td class="dropdown">
+						<a href="javascript:;" id="comment_usercat" data-toggle="dropdown">{$value['realname']}</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="comment_usercat">
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="{:U($urlName, array('created_uid'=>$value['created_uid'],'query'=>NULL))}">只显示该用户发布</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="{:U('/set/user', array('query'=>$value['created_uid']))}">编辑该用户</a></li>
+						</ul>
+					</td>
+					<td>{$value['created_at']|date="Y-m-d H:i",###}</td>
+					<td>
+						<if condition="$app == 1">
+							<a href="{:U('/set/editArticle', array('ac'=>'edit','aid'=>$value['id']))}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+						<else />
+							<a href="javascript:;" onclick="arpgBatch('确定要恢复显示 {$value['title']}', 'arpg_check', 'setBatchArticle', 're', {$value['id']});" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-repeat"></span> 恢复</a>
+						</if>
+					</td>
+				</tr>
+			</foreach>
+
+		</tbody>
+
+	</table>
+	
+	<if condition="$app == 1">
+	<hr>
+	<div class="setBchange">
+		<label for="chk_all" class="control-label">
+			<input id="chk_all" class="pc vm" type="checkbox" name="chk_all" />
+		</label>
+		&nbsp;
+		<input type="hidden" value="{$ref}" name="ref" />
+		<a href="javascript:;" onclick="arpgBatch('确定要删除这些文章', 'arpg_check', 'setBatchArticle', 'del', '');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+		<a href="javascript:;" onclick="arpgBatch('确定要审核这些文章', 'arpg_check', 'setBatchArticle', 'audit', '');" class="btn btn-primary btn-sm">审核</a>
+	</div>
+	</if>
+	
+	<div class="pagination-centered">
+		<ul class="pagination pagination-sm">
+			<if condition="$articleArr['mulitpage']">
+				{$articleArr['mulitpage']}
+			<else />
+				<li>&nbsp;</li>
+			</if>
+		</ul>
+	</div>
+</if>

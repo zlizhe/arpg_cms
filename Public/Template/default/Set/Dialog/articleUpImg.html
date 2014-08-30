@@ -1,0 +1,82 @@
+<form class="cutimg" role="form" method="post" target="actionfrm" action="{$action}" enctype="multipart/form-data">
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">编辑图片(您可以划出您想展示的区域)</h4>
+        </div>
+        <div class="modal-body text-center">
+
+            <div class="zxx_main_con">
+                <div class="zxx_test_list">
+                    <div class="rel mb20">
+                        <img {$imgSize[3]} src="{$imgpath}?{$num}" id="cutimg" />
+                    </div>
+                    <input type="hidden" id="x" name="x" />
+                    <input type="hidden" id="y" name="y" />
+                    <input type="hidden" id="w" name="w" />
+                    <input type="hidden" id="h" name="h" />
+                    <input type="hidden" id="pwidth" name="pwidth" />
+                    <input type="hidden" id="pheight" name="pheight" />
+                </div>
+            </div>
+
+            <input type="hidden" name="img" value="{$imgpath}" />
+            <input type="hidden" name="ref" value="" />
+
+        </div>
+        <div class="modal-footer">
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="submit" class="btn btn-primary" data-loading-text="Loading...">保存</button>
+        </div>
+    </div>
+</div>
+</form>
+
+<style>
+/*.cutimg .modal-body{
+    max-height: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.cutimg .modal-content{
+    width: 899px;
+    overflow: hidden;
+}*/
+/*.jcrop-keymgr{
+    display: none;
+}*/
+</style>
+
+<link rel="stylesheet" href="/css/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript" src="/js/jquery.Jcrop.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#cutimg").Jcrop({
+            aspectRatio: 1,
+            onChange:showCoords,
+            onSelect:showCoords,
+            boxWidth: 850,
+            // aspectRatio: 1/1,
+        }); 
+        function showCoords(obj){
+            $("#x").val(obj.x);
+            $("#y").val(obj.y);
+            $("#w").val(obj.w);
+            $("#h").val(obj.h);
+        }
+    });
+    /* 按钮状态显示  */
+    $('button[data-loading-text]').click(function () {
+        var btn = $(this).button('loading');
+        setTimeout(function () {
+            btn.button('reset');
+        }, 3000);
+    });
+    
+
+
+</script>

@@ -1,0 +1,33 @@
+/**
+ * 	Powered by ARPG TEAM.
+ * 	http://web.zlizhe.com
+ *  WENDA 专用
+ */
+.navbar-brand{
+	padding-top: 0;
+}
+#avatar img{
+	width: 40px;
+	height: 40px;
+}
+#avatar{
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+.avatar_wall{
+	margin-top: 20px;
+}
+.avatar_wall .col-md-6{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+/*.avatar_wall .panel-body{
+	margin-left: 20px;
+}*/
+.listtab{
+	margin-top: 20px;
+}
+
+.panel{
+	margin-top: 20px;
+}

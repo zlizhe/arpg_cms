@@ -1,0 +1,80 @@
+<form class="form-horizontal" role="form" method="post" target="actionfrm" action="{:U('Set/Ajax/setOss')}" enctype="multipart/form-data">
+
+	<blockquote>
+		这里的OSS指 阿里云 提供的 开放存储服务OSS
+		<small><a href="//oss.aliyun.com" target="_blank">oss.aliyun.com</a></small>
+	</blockquote>
+	<table class="table table-hover">
+		<tbody>
+
+			<tr>
+				<td>
+					<label class="col-sm-12 control-label">开启OSS上传图片</label>
+				</td>
+				<td>
+					<div class="radio">
+						<label><input type="radio" name="oss_open" value="1" <if condition="$ossArr['oss_open'] == 1">checked</if> /> 开启</label>
+						&nbsp;
+						<label><input type="radio" name="oss_open" value="0" <if condition="$ossArr['oss_open'] == 0">checked</if> /> 关闭</label>
+					</div>
+				</td>
+				<td><div class="help-block control-label">开启后请设置图片域名和头像域名为OSS域名</div></td>
+			</tr>
+	
+			<tr>
+				<td>
+					<label for="exampleInputOssid1" class="col-sm-12 control-label">OSS_ACCESS_ID</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputOssid1" placeholder="OSS_ACCESS_ID" name="oss_id" value="{$ossArr['oss_id']}" maxlength="20">
+				</td>
+				<td><div class="help-block control-label">OSS账号里提供的 ID</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputOsskey1" class="col-sm-12 control-label">OSS_ACCESS_KEY</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputOsskey1" placeholder="OSS_ACCESS_KEY" name="oss_key" value="{$ossArr['oss_key']}" maxlength="30">
+				</td>
+				<td><div class="help-block control-label">OSS账号里提供的 KEY</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputArticlebucket1" class="col-sm-12 control-label">文章缩略图 bucket名称</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputArticlebucket1" placeholder="文章缩略图 bucket名称" name="article_bucket" value="{$ossArr['article_bucket']}" maxlength="20">
+				</td>
+				<td><div class="help-block control-label">文章缩略图 bucket名称</div></td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="exampleInputAvatarbucket1" class="col-sm-12 control-label">头像 bucket名称</label>
+				</td>
+				<td class="form-group">
+					<input type="text" class="form-control" id="exampleInputAvatarbucket1" placeholder="头像 bucket名称" name="avatar_bucket" value="{$ossArr['avatar_bucket']}" maxlength="20">
+				</td>
+				<td><div class="help-block control-label">头像 bucket名称</div></td>
+			</tr>
+
+
+
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="hidden" value="{$ref}" name="ref" />
+					<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+				</td>
+				<td></td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+
+</form>

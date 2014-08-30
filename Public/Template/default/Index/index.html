@@ -1,0 +1,68 @@
+<if condition="$slideArr">
+	<div class="row">
+		
+		{// 滚动图片}
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		  	<ol class="carousel-indicators">
+		  		<foreach name="slideArr" item="value">
+		    		<li data-target="#carousel-example-generic" data-slide-to="{$key}" class="<if condition="$key == 0">active</if>"></li>
+				</foreach>
+		  	</ol>
+
+		  	<div class="carousel-inner" role="listbox">
+		  		<foreach name="slideArr" item="value">
+			    	<div class="item <if condition="$key == 0">active</if>">
+			    		<a href="{$value['link']}" <if condition="$value['target']">target="_blank"</if>>
+			      			<img src="{$value['img_url']}" alt="正在加载图片" />
+			      		</a>
+			    	</div>
+		    	</foreach>
+		  	</div>
+
+		  	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		    	<span class="glyphicon glyphicon-chevron-left"></span>
+		    	<span class="sr-only">前一张</span>
+		  	</a>
+		  	<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+		    	<span class="glyphicon glyphicon-chevron-right"></span>
+		    	<span class="sr-only">后一张</span>
+		  	</a>
+		</div>
+
+	</div>
+
+	<div class="clearfix"></div>
+	<hr />
+</if>
+
+<div class="row">
+	
+	{// 分类内容}
+	<ul class="list-inline">
+
+		<foreach name="categoryArr" item="value">
+			<li class="index_cat">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<a href="/{$value['path_name']}">{$value['value']}</a>
+						<span class="pull-right"><a href="/{$value['path_name']}">更多 >></a></span>
+					</div>
+					
+					<if condition="$value['articles']">
+						<ul class="list-group">
+							<foreach name="value['articles']" item="value2">
+								<li class="list-group-item"><a href="/article/{$value2['id']}/{$value2['title']}">{$value2['title']}</a></li>
+							</foreach>
+						</ul>
+					<else />
+						<div class="panel-body">该栏目还没有文章</div>
+					</if>
+				</div>
+			</li>
+		</foreach>
+
+	</ul>
+
+
+
+</div>

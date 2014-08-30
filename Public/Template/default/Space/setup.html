@@ -1,0 +1,158 @@
+
+	<div class="col-md-8">
+		<ul class="nav nav-tabs" role="tablist">
+		  	<li class="<if condition="$app == 1">active</if>"><a href="{:U('/space/setup/app/1')}">个人信息</a></li>
+		  	<li class="<if condition="$app == 2">active</if>"><a href="{:U('/space/setup/app/2')}">修改头像</a></li>
+		  	<li class="<if condition="$app == 3">active</if>"><a href="{:U('/space/setup/app/3')}">账号资料</a></li>
+		</ul>
+
+
+		{// 个人信息}
+		<if condition="$app == 1">
+			<if condition="!$reginfoArr['realname_true'] && !$reginfoArr['gender_true'] && !$reginfoArr['age_true']">
+				<br>
+				<blockquote>没有更多资料可以填写</blockquote>
+			</if>
+			<form class="form-horizontal" role="form" method="post" target="actionfrm" action="{:U('Member/Ajax/setProfile')}" enctype="multipart/form-data">
+
+				<div class="col-md-12">
+
+					<if condition="$reginfoArr['realname_true']">
+						<div class="form-group">
+					    	<label for="InputRealname1">昵称<?php if ($reginfoArr['realname_must']) {?><font color="red">*</font><?php }?></label>
+					    	<input type="text" class="form-control" id="InputRealname1" placeholder="昵称" value="{$profileArr['realname']}" name="realname" maxlength="10">
+						</div>
+					</if>
+					
+					<if condition="$reginfoArr['gender_true']">
+						<div class="form-group">
+					    	<label>性别<?php if ($reginfoArr['gender_must']) {?><font color="red">*</font><?php }?></label>
+				    		<div class="clearfix"></div>
+							<label class="radio-inline">
+							  	<input type="radio" name="gender" value="1" <?php if ($profileArr['gender'] == 1) {?>checked<?php }?>> 男
+							</label>
+							<label class="radio-inline">
+							  	<input type="radio" name="gender" value="2" <?php if ($profileArr['gender'] == 2) {?>checked<?php }?>> 女
+							</label>
+							<input type="hidden" name="genderInput" />
+						</div>
+					</if>
+					
+					<if condition="$reginfoArr['age_true']">
+						<div class="form-group">
+					    	<label for="exampleInputAge1">年龄<?php if ($reginfoArr['age_must']) {?><font color="red">*</font><?php }?></label>
+					    	<input type="text" class="form-control" id="exampleInputAge1" placeholder="年龄" name="age" value="{$profileArr['age']}" maxlength="2">
+						</div>
+					</if>
+
+				</div>
+
+
+				<hr>
+				<div class="setBchange">
+					<input type="hidden" value="{$ref}" name="ref" />
+					<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+				</div>
+			</form>
+		</if>
+
+
+		{// 修改头像}
+		<if condition="$app == 2">
+			
+
+			<div class="col-md-12">
+				<br>
+				<h5>我的当前头像</h5>
+				<div class="form-group">
+					<img src="{$myAvatar}" class="img-thumbnail" />
+				</div>
+
+				<hr>
+				<div class="form-group">
+
+					<a href="javascript:showUpload();" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> 上传新头像</a>
+					<form action="{:U('member/ajax/upAvatarSmart')}" class="form-horizontal hide" method="post" target="actionfrm" id="smartava_form" name="smartava_form" enctype="multipart/form-data">
+						<input type="file" id="smart_ava" name="smart_ava" />
+					</form>
+					<p class="help-block">上传完成后您可能需要刷新本页才能看到头像变化</p>
+				</div>
+			</div>
+
+
+			<script>
+				//打开普通 上传窗口	
+				function showUpload() {
+					$("#smart_ava").click();
+				}
+				//开始上传动作
+				$('input#smart_ava').change(function(){
+					//ON LOADING
+	            	showWindow('/index.php/dialog/dialog/uploading');
+					$("#smartava_form").submit();
+				});
+
+			</script>
+
+		</if>
+
+
+		{// 账号资料}
+		<if condition="$app == 3">
+			<form class="form-horizontal" role="form" method="post" target="actionfrm" action="{:U('Member/Ajax/setMemberData')}" enctype="multipart/form-data">
+
+				<div class="col-md-12">
+
+					<if condition="$reginfoArr['username_true']">
+						<div class="form-group">
+					    	<label for="exampleInputUsername1">用户名<?php if ($reginfoArr['username_must']) {?><font color="red">*</font><?php }?></label>
+					    	<input type="text" class="form-control" id="exampleInputUsername1" placeholder="用户名" name="username" value="{$membersArr['username']}" maxlength="30">
+						</div>
+					</if>
+
+					<if condition="$reginfoArr['email_true']">
+						<div class="form-group">
+					    	<label for="exampleInputEmail1">电子邮箱<?php if ($reginfoArr['email_must']) {?><font color="red">*</font><?php }?></label>
+					    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="电子邮箱" name="email" value="{$membersArr['email']}" maxlength="40">
+						</div>
+					</if>
+
+					<if condition="$reginfoArr['phone_true']">
+						<div class="form-group">
+					    	<label for="exampleInputPhone1">手机号码<?php if ($reginfoArr['phone_must']) {?><font color="red">*</font><?php }?></label>
+					    	<input type="text" class="form-control" id="exampleInputPhone1" placeholder="手机号码" name="phone" value="{$membersArr['phone']}" maxlength="11">
+						</div>
+					</if>
+
+					<hr>
+					
+					<div class="form-group">
+				    	<label for="exampleInputPassword1">原密码<font color="red">*</font></label>
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码" name="password" value="">
+					</div>
+
+					<div class="form-group">
+				    	<label for="exampleInputNewPassword1">新密码</label>
+						<input type="password" class="form-control" id="exampleInputNewPassword1" placeholder="新密码" name="newPassword" value="">
+					</div>
+
+					<div class="form-group">
+				    	<label for="exampleInputNewPassword2">确认新密码</label>
+						<input type="password" class="form-control" id="exampleInputNewPassword2" placeholder="确认新密码" name="newPassword2" value="">
+					</div>
+					
+					<div class="form-group">
+						<p class="help-block">* 修改此栏目资料需要验证您的密码, 如无需修改密码, 则留空新密码一栏</p>
+					</div>
+				</div>
+				
+				<hr>
+				<div class="setBchange">
+					<input type="hidden" value="{$ref}" name="ref" />
+					<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
+				</div>
+			</form>
+		</if>
+
+	</div>
+

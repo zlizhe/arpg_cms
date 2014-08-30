@@ -1,0 +1,213 @@
+<blockquote class="comment_top">评论 <if condition="$articleArr['comment_num']">{$articleArr['comment_num']} 人参与</if></blockquote>
+
+<div class="row">
+
+	<div class="col-md-12">
+		<if condition="$_Guser">
+			<div class="view_comment">
+				<form name="form" action="{:U('home/ajax/setComment', array('op'=>'publish'))}" class="form-horizontal" method="post" target="actionfrm" id="commentPublish">
+					<div class="col-md-12">
+						<textarea id="publish_text" name="comment" class="comment_area" placeholder="发表评论" rows="5" maxlength="120" onkeydown="event.keyCode==13 && $('#commentPublish').submit();"></textarea>
+					</div>
+
+					<div class="col-md-6">
+						<small class="comment_num"><i>0</i>/120</small>
+					</div>
+					<div class="col-md-6 text-right">
+						<button class="btn btn-default" data-loading-text="Loading...">发表评论</button>
+					</div>
+					<input type="hidden" name="aid" value="{$articleArr['id']}" />
+				</form>
+			</div>
+		<else />
+			<blockquote>
+				<small>您需要登录才能评论...&nbsp;
+				<a href="{:U('/member/login', array('ref'=>$ref))}" data-dialog="{:U('dialog/dialog/login')}?ref={$ref}" id="showWindow">登录</a>
+				<a href="{:U('/member/register', array('ref'=>$ref))}" target="_blank">免费注册</a>
+				</small>
+			</blockquote>
+		</if>
+	</div>
+
+	<div class="clearfix"></div>
+
+
+	<div class="col-md-12">
+		<div class="comment_msgs">
+			<hr />
+		    <ul class="media-list" id="showMsg">
+
+		    </ul>
+		    <center class="hide" id="comment_loading"><img src="/img/loading.gif" /></center>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="comment_replay" class="hide">
+
+	<div class="clearfix"></div>
+    <div class="comment_replay">
+        <div class="col-md-12">
+	        <form name="form" action="{:U('home/ajax/setComment', array('op'=>'replay'))}" class="form-horizontal" method="post" target="actionfrm" id="replayPublish">            
+	            <div class="col-md-12">
+	            	<textarea id="replay_text" class="comment_area" placeholder="发表回复" name="comment" rows="3" maxlength="120" onkeydown="event.keyCode==13 && $('#replayPublish').submit();"></textarea>
+				</div>
+				<div class="col-md-6">
+				</div>
+				<div class="col-md-6 text-right">
+					<button class="btn btn-default btn-sm" data-loading-text="Loading...">发表回复</button>
+				</div>
+	            <input type="hidden" name="re_id" value="#re_id#" />
+	            <input type="hidden" name="aid" value="{$articleArr['id']}" />
+	        </form>
+        </div>
+        <div class="clearfix"></div>
+    </div> 
+</div>
+
+<script>
+$(document).ready(function() {
+	//点击清除提示
+	// $('textarea[name="comment"]').click(function(){
+	// 	var _this = $(this);
+	// 	hideCommentErr(_this);
+	// });
+
+	// 评论框字数
+	$(".comment_area").bind('focus keyup input paste',function(){
+		var _this = $(this);
+		getTextNum(_this, '.comment_num i');
+	});
+
+	//加载评论内容
+    window.commentOffset = 0;
+    $(window).scroll(function() {
+        //滚动条事件
+        
+        //显示评论内容
+        try {
+            var nowHeight = $(this).height() - $(".comment_top").height();
+            if (($(".comment_top").offset().top - ($(this).scrollTop())) < nowHeight){
+                if (window.commentOffset != '-1'){
+                    //get comment
+                    getCommentMsg({$articleArr['id']}, window.commentOffset);
+                    //offset = 5
+                    window.commentOffset = window.commentOffset + 5;
+                }
+                
+            }
+        } catch (err) {
+
+        }
+    });
+});
+
+//评论操作 提示
+function showCommentMsg(status, id, value) {
+ 	//alert(id);
+	_this = $('textarea[id="'+id+'"]');
+	//评论错误
+	if (status == 'error') {
+		_this.after("<div class='help-block'><span class=\"glyphicon glyphicon-exclamation-sign\"></span> " + value + "</div>");
+	    _this.parents('.col-md-12').removeClass('has-success');
+	    _this.parents('.col-md-12').addClass('has-error');
+	}
+
+	//评论成功
+	if (status == 'success') {
+		//操作成功 刷新评论内容
+		_this.after("<div class='help-block'><span class=\"glyphicon glyphicon-ok-circle\"></span> " + value + "</div>");
+		_this.parents('.col-md-12').removeClass('has-error');
+	    _this.parents('.col-md-12').addClass('has-success');
+	    //刷新
+	    window.commentOffset = 0;
+	    getCommentMsg({$articleArr['id']}, 0);
+	}
+
+	//隐藏提示
+	hideCommentErr(_this);
+	_this.val('');
+	$('.comment_num i').text('0');
+}
+
+//隐藏错误 提示
+function hideCommentErr(target) {
+	setTimeout(function () {
+		target.next('.help-block').remove();
+		target.parents('.col-md-12').removeClass('has-error');
+	}, 3000);
+	
+}
+
+//VIEW 统计字数
+function getTextNum (_this, target){
+
+	var num = _this.val().length;
+	// if(num > 120){
+	// 	var numtext = "<font color=\"#FF0000\">" + num + "</font>";
+	// }else{
+	// 	var numtext = num;
+	// }
+	// 设置了 MAXLENGTH 不会超过了
+	var numtext = num;
+	$(target).html(numtext);
+}
+
+//清空评论内容
+function clearComment() {
+	$('#showMsg').children().remove();
+}
+
+
+//取评论
+function getCommentMsg(aid, offset) {
+	
+	//var page ? page : 1;
+	if (aid) {
+		$.getJSON("/index.php/home/ajax/getComment", {'aid': aid, 'offset': offset},function(result){   
+			//console.log(result.res);
+			if(result.status == 'success'){
+				if (offset == 0) {
+					//第一页 清除所有
+					clearComment();
+				}
+				$('#showMsg').append(result.res);
+			}else{
+				window.commentOffset = -1;
+			}
+		});
+	}
+
+}
+
+//创建回复框
+function replay(re_id) {
+
+	<?php if ($_Guser) {?>
+	var dataopen = $("#replay_" + re_id).attr('data-open');
+	//移除已有评论框
+	$('#showMsg .comment_replay').remove();
+
+	if (dataopen != 'true') {
+		//创建回复评论框
+		var replayhtml = $('#comment_replay').html();
+		//id
+		replayhtml = replayhtml.replace(/#re_id#/, re_id);
+		$("#replay_" + re_id).append(replayhtml);
+		$("#replay_" + re_id + ' .comment_replay').fadeIn();
+		//设置所有为FALSE
+		$(".comment_msgs .media").attr('data-open', 'false');
+		$("#replay_" + re_id).attr('data-open', 'true');
+	}else{
+		$("#replay_" + re_id).attr('data-open', 'false');
+	}
+	<?php }else{ ?>
+
+		nowLogin();
+	<?php }?>
+
+}
+
+</script>

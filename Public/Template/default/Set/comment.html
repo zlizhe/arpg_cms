@@ -1,0 +1,103 @@
+
+<if condition="$commentArr['how'] == 0">
+
+	<blockquote>没有找到信息</blockquote>
+	
+<else />
+	<blockquote>总共找到 {$commentArr['how']} 条信息
+
+	<if condition="$aid">
+		<small>
+		<span class="label label-primary">
+		文章ID: "{$aid}" <a href="{:U($urlName, array('aid'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a> 
+		</span>
+		</small>
+	</if>
+
+	<if condition="$created_uid">
+		<small>
+		<span class="label label-primary">
+		发布者ID: "{$created_uid}" <a href="{:U($urlName, array('created_uid'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a> 
+		</span>
+		</small>
+	</if>
+	</blockquote>
+
+	<table class="table table-hover">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>内容</th>
+				<th>文章</th>
+				<th>发布者</th>
+				<th>发布于</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<foreach name="commentArr['row']" item="value">
+				<tr>
+					<td>
+					<if condition="$app == 1">
+						<input type="checkbox" name="arpg_check" id="checkOn" value="{$value[id]}">
+					<else />
+						&nbsp;
+					</if>
+					</td>
+
+					<td width="70%">
+						<a href="/article/{$value['aid']}#commentPublish" target="_blank">
+						{$value['content']}
+						</a>
+					</td>
+					<td class="dropdown">
+						<a href="javascript:;" id="comment_article" data-toggle="dropdown">{$value['aid']}</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="comment_article">
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="{:U($urlName, array('aid'=>$value['aid'],'query'=>NULL))}">只显示该文章评论</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="{:U('/set/editArticle/ac/edit', array('aid'=>$value['aid']))}">编辑该文章内容</a></li>
+						</ul>
+					</td>
+					<td class="dropdown">
+						<a href="javascript:;" id="comment_usercat" data-toggle="dropdown">{$value['realname']}</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="comment_usercat">
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="{:U($urlName, array('created_uid'=>$value['created_uid'],'query'=>NULL))}">只显示该用户评论</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="{:U('/set/user', array('query'=>$value['created_uid']))}">编辑该用户</a></li>
+						</ul>
+					</td>
+					<td>
+						<if condition="$app == 1">
+							{$value['created_at']|date="Y-m-d H:i",###}
+						<else />
+							<a href="javascript:;" onclick="arpgBatch('确定要恢复显示该评论', 'arpg_check', 'setBatchComment', 're', {$value['id']});" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-repeat"></span> 恢复</a>
+						</if>
+					</td>
+				</tr>
+			</foreach>
+
+		</tbody>
+
+	</table>
+	
+	<if condition="$app == 1">
+	<hr>
+	<div class="setBchange">
+		<label for="chk_all" class="control-label">
+			<input id="chk_all" class="pc vm" type="checkbox" name="chk_all" />
+		</label>
+		&nbsp;
+		<input type="hidden" value="{$ref}" name="ref" />
+		<a href="javascript:;" onclick="arpgBatch('确定要删除这些评论', 'arpg_check', 'setBatchComment', 'del', '');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+	</div>
+	</if>
+	
+	<div class="pagination-centered">
+		<ul class="pagination pagination-sm">
+			<if condition="$commentArr['mulitpage']">
+				{$commentArr['mulitpage']}
+			<else />
+				<li>&nbsp;</li>
+			</if>
+		</ul>
+	</div>
+</if>

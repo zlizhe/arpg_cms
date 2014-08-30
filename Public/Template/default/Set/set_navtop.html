@@ -1,0 +1,81 @@
+	
+	<ul class="nav nav-tabs" role="tablist">
+
+		<if condition="$action == 'setting'">
+	  		<li class="active"><a href="">网站设置</a></li>
+		</if>
+
+		<if condition="$action == 'reginfo'">
+	  		<li class="active"><a href="">注册控制</a></li>
+		</if>
+
+		<if condition="$action == 'user'">
+	  		<li <if condition="$app == 1">class="active"</if>><a href="{:U('/set/user/app/1')}">全部</a></li>
+	  		<li <if condition="$app == 2">class="active"</if>><a href="{:U('/set/user/app/2')}">小黑屋</a></li>
+			<a href="{:U('/set/dialog/addUser', array('ref'=>$ref))}" id="showWindow" class="btn btn-success">添加用户</a>
+		</if>
+
+		<if condition="$action == 'group'">
+	  		<li class="active"><a href="">角色管理</a></li>
+	  		<a href="{:U('/set/dialog/editGroup', array('ref'=>$ref,'ac'=>'add'))}" id="showWindow" class="btn btn-success">添加角色</a>
+		</if>
+
+		<if condition="$action == 'competence'">
+	  		<li class="active"><a href="">权限设置</a></li>
+	  		<a href="{:U('/set/dialog/editCompetence', array('ref'=>$ref,'ac'=>'add'))}" id="showWindow" class="btn btn-success">添加权限</a>
+		</if>
+
+		<if condition="$action == 'nav'">
+	  		<li class="active"><a href="">主导航</a></li>
+	  		<a href="{:U('/set/dialog/editNav', array('ref'=>$ref,'ac'=>'add'))}" id="showWindow" class="btn btn-success">添加主导航</a>
+		</if>
+
+		<if condition="$action == 'themes'">
+	  		<li class="active"><a href="">主题设置</a></li>
+	  		<a href="{:U('/set/dialog/addThemes', array('ref'=>$ref))}" id="showWindow" class="btn btn-success">添加主题</a>
+		</if>
+
+		<if condition="$action == 'category'">
+	  		<li class="active"><a href="">分类管理</a></li>
+	  		<a href="{:U('/set/dialog/editCategory', array('ref'=>$ref))}" id="showWindow" class="btn btn-success">添加分类</a>
+		</if>
+
+		<if condition="$action == 'article'">
+	  		<li class="<if condition="$app == 1">active</if>"><a href="{:U('/set/article', array('app'=>1))}">显示中</a></li>
+	  		<li class="<if condition="$app == 2">active</if>"><a href="{:U('/set/article', array('app'=>2))}">已删除</a></li>
+	  		<li class="<if condition="$app == 3">active</if>"><a href="{:U('/set/article', array('app'=>3))}">审核中</a></li>
+			<div class="btn-group">
+	  			<a href="{:U('/set/editArticle', array('ac'=>'add'))}" class="btn btn-success">添加文章</a>
+			</div>
+
+		</if>
+
+		<if condition="$action == 'comment'">
+	  		<li class="<if condition="$app == 1">active</if>"><a href="{:U('/set/comment', array('app'=>1))}">显示中</a></li>
+	  		<li class="<if condition="$app == 2">active</if>"><a href="{:U('/set/comment', array('app'=>2))}">已删除</a></li>
+	  		<li class="<if condition="$app == 3">active</if>"><a href="{:U('/set/comment', array('app'=>3))}">审核中</a></li>
+		</if>
+
+		<if condition="$action == 'slide'">
+	  		<li class="active"><a href="{:U('/set/slide')}">首页滚动图片</a></li>
+	  		<div class="btn-group">
+	  			<a href="javascript:showUpload();" class="btn btn-success" title="建议大小 1200 x 250像素">添加新图片</a>
+			</div>
+		</if>
+
+<!-- 		<if condition="$action == 'oss'">
+  		<li class="active"><a href="{:U('/set/oss')}">OSS上传</a></li>
+	</if> -->
+
+		
+		<if condition="$action == 'user' || $action == 'article'">
+		  	<div class="navbar-form navbar-right set_rightsearch" role="search" >
+		        <div class="form-group has-feedback">
+		          	<input type="text" class="form-control" placeholder="关键词..." name="query" id="query" autocomplate="off" onkeydown="event.keyCode==13 && $('#set_search').click();" value="{$query}">
+		          	<a href="javascript:;" id="set_search"><span class="glyphicon glyphicon-search form-control-feedback"></span></a>
+		        </div>
+		        <input type="hidden" value="{:U($urlName, array('query'=>NULL))}/query/" name="set_search_url" id="set_search_url" />
+	  		</div>
+  		</if>
+
+	</ul>
