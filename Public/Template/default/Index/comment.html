@@ -166,7 +166,7 @@ function getCommentMsg(aid, offset) {
 	
 	//var page ? page : 1;
 	if (aid) {
-		$.getJSON("/index.php/home/ajax/getComment", {'aid': aid, 'offset': offset},function(result){   
+		$.getJSON("/home/ajax/getComment", {'aid': aid, 'offset': offset},function(result){   
 			//console.log(result.res);
 			if(result.status == 'success'){
 				if (offset == 0) {

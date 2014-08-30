@@ -45,7 +45,7 @@ $(document).ready(function() {
 function arpgDel(id, name, action) {
 	var ref = $('input[name=ref]').val();
 	if (window.confirm("确定要删除 \""+name+"\" ?")){
-		$.getJSON("/index.php/set/ajax/"+action, {id:id},function(result){   
+		$.getJSON("/set/ajax/"+action, {id:id},function(result){   
 			if(result.status == 'success'){
 				successMsg("操作成功, 正在跳转...", ref);
 			}else{
@@ -63,7 +63,7 @@ function arpgDel(id, name, action) {
 function ban(uid, name) {
 	var ref = $('input[name=ref]').val();
 	if (window.confirm("确定禁止 \""+name+"\" 的账号使用吗?")){
-		$.getJSON("/index.php/set/ajax/setBan",{uid:uid},function(result){   
+		$.getJSON("/set/ajax/setBan",{uid:uid},function(result){   
 			if(result.status == 'success'){
 				successMsg("操作成功, 正在跳转...", ref);
 			}else{
@@ -81,7 +81,7 @@ function ban(uid, name) {
 function reban(uid, name) {
 	var ref = $('input[name=ref]').val();
 	if (window.confirm("确定恢复 \""+name+"\" 的账号继续使用吗?")){
-		$.getJSON("/index.php/set/ajax/setBan",{uid:uid, type:1},function(result){   
+		$.getJSON("/set/ajax/setBan",{uid:uid, type:1},function(result){   
 			if(result.status == 'success'){
 				successMsg("操作成功, 正在跳转...", ref);
 			}else{

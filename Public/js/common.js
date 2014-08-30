@@ -60,7 +60,7 @@ function showCaptcha(str){
 function getCaptcha(){
 	$('#captcha').html('<img src="/img/loading.gif" />');
 	var time = new Date().getTime();
-	$('#captcha img').attr('src', '/index.php/member/ajax/getCaptcha?' + Math.random());
+	$('#captcha img').attr('src', '/member/ajax/getCaptcha?' + Math.random());
 	//清空框中内容
 	$("input[name='verify']").val('');
 }
@@ -106,7 +106,7 @@ function errorMsg(res){
 
 //操作成功 对话框
 function successMsg(res, url){
-	var data = "/index.php/dialog/dialog/success/?res=" + encodeURI(res) + "&url=" + url;
+	var data = "/dialog/dialog/success/?res=" + encodeURI(res) + "&url=" + url;
 	showWindow(data);
 }
 
@@ -139,7 +139,7 @@ function back_top(){
 //未登陆  要求登陆弹出
 function nowLogin(){
 	var ref = $('input[name=ref]').val();
-	var data = "/index.php/dialog/dialog/login/?ref=" + ref + '&isre=1';
+	var data = "/dialog/dialog/login/?ref=" + ref + '&isre=1';
 	showWindow(data);
 }
 
@@ -151,7 +151,7 @@ function loginOut() {
 
 //浏览数、评论
 function setPlus(aid, type){
-	$.post("/index.php/home/ajax/setPlus",{aid:aid, type:type},function(result){
+	$.post("/home/ajax/setPlus",{aid:aid, type:type},function(result){
 		//console.log(result);
 	});
 }
@@ -183,7 +183,7 @@ function arpgBatch(msg, name, action, type, ids) {
     	//开始操作
     	if (window.confirm(msg + "?")){
 			var ref = $('input[name=ref]').val();
-			$.getJSON("/index.php/set/ajax/"+action, {ids:ids, type:type},function(result){   
+			$.getJSON("/set/ajax/"+action, {ids:ids, type:type},function(result){   
 				if(result.status == 'success'){
 					successMsg("操作成功, 正在跳转...", ref);
 				}else{

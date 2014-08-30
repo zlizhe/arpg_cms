@@ -11,7 +11,7 @@
  Target Server Version : 50612
  File Encoding         : utf-8
 
- Date: 08/30/2014 12:49:24 PM
+ Date: 08/30/2014 19:07:16 PM
 */
 
 SET NAMES utf8;
@@ -297,7 +297,7 @@ CREATE TABLE `arpg_service_setting` (
 --  Records of `arpg_service_setting`
 -- ----------------------------
 BEGIN;
-INSERT INTO `arpg_service_setting` VALUES ('1', 'ARPG内容管理系统', 'http://127.0.0.1:9982', 'smtp.exmail.qq.com', 'members@ripppple.com', 'AyFW6nsD', '/uploads/img/', '/uploads/avatar/', '', '1', 'default', '1');
+INSERT INTO `arpg_service_setting` VALUES ('1', 'ARPG内容管理系统', 'http://cms.zlizhe.com', 'smtp.exmail.qq.com', '', '', '/uploads/img/', '/uploads/avatar/', '', '1', 'default', '1');
 COMMIT;
 
 -- ----------------------------
