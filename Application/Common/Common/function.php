@@ -277,14 +277,15 @@ function humDate($date, $type='Y-m-d H:i')
  * @param  [type] $ip [description]
  * @return [type]     [description]
  */
-function getLocation($ip)
+function getLocation($getip)
 {
     if ($ip == '127.0.0.1') {
         return '火星';
     }
     $ip = new Org\Net\IpLocation('../../../../Public/data/ipdata/UTFWry.dat'); // 实例化类 参数表示IP地址库文件
-    $area = $ip->getlocation($ip); // 获取某个IP地址所在的位置
-    return $area;
+    $area = $ip->getlocation($getip); // 获取某个IP地址所在的位置
+    //print_r($area);
+    return $area['country'];
 }
 
 //多页码分页 
