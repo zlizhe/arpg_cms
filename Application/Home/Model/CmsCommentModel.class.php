@@ -85,7 +85,7 @@ class CmsCommentModel extends Model{
 
 		$results = $this->where($map)->order(array('t1.created_at'=>'DESC'))
 						->limit($offset, $limit)
-						->cache(true, 5)
+						->cache(true, 30)
 						->select();
 
 
