@@ -104,3 +104,8 @@ textarea:focus{
 	margin-top: 10px;
 }
 
+.index_cat .list-group-item{
+	height: 35px;
+	/*line-height: 40px;*/
+	overflow: hidden;
+}

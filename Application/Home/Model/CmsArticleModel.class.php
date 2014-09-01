@@ -40,10 +40,10 @@ class CmsArticleModel extends Model{
 
 		//搜索文章
 		if ($query) {
+			$where['t1.tags'] = array('LIKE', "%$query%");
 			$where['t1.id'] = array('LIKE', "%$query%");
 			$where['t1.title'] = array('LIKE', "%$query%");
 			$where['t1.content'] = array('LIKE', "%$query%");
-			$where['t1.tags'] = array('LIKE', "%$query%");
 			$where['t2.realname'] = array('LIKE', "%$query%");
 			$where['_logic'] = 'OR';
 			$map['_complex'] = $where;
@@ -186,7 +186,7 @@ class CmsArticleModel extends Model{
 			$map['cat_id'] = $cat_id;
 		}
 
-		$results = $this->where($map)->order('created_at DESC')->select();
+		$results = $this->where($map)->limit($count)->order('created_at DESC')->select();
 
 		return $results;
 	}
