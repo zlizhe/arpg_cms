@@ -795,6 +795,9 @@ class AjaxController extends PublicController {
         $link  = I('post.link');
         $upid = intval(I('post.upid', 0));
 
+        //编辑 时
+        $cid = intval(I('post.cid'));
+
         //添加至主导航
         $onNav = intval(I('post.onNav', 0));
 
@@ -815,12 +818,23 @@ class AjaxController extends PublicController {
         //CAT DB ...
         $catDb = D('Home/CmsCategory');
 
-        //目录不重复
-        $catArr = $catDb->getByPath($path_name);
-        if ($catArr) {
-            echo "<script>parent.showPopError('path_name', '目录名称重复, 换一个名称吧')</script>";
-            $err = 1;
+        //编辑时 
+        if ($cid) {
+            $oldCatArr = $catDb->get($cid);
+        }else{
+            $oldCatArr = '';
         }
+        
+        //编辑时 是以前设置的目录名
+        if ($path_name != $oldCatArr['path_name']) {
+            //目录不重复
+            $catArr = $catDb->getByPath($path_name);
+            if ($catArr) {
+                echo "<script>parent.showPopError('path_name', '目录名称重复, 换一个名称吧')</script>";
+                $err = 1;
+            }
+        }
+
 
         //目录非法 保留关键字
         $protectedKey = array('article', 'search', 'ajax', 'set', 'member', 'service', 'dialog', 'home');
@@ -851,7 +865,7 @@ class AjaxController extends PublicController {
 
         //更新现有值
         if ($ac == 'edit') {
-            $cid = intval(I('post.cid'));
+            
             $res = $catDb->setUpdate($data, $cid);
         }
 
