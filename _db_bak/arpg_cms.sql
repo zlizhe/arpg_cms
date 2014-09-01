@@ -286,7 +286,7 @@ CREATE TABLE `arpg_service_setting` (
   `mail_password` varchar(20) NOT NULL,
   `img_url` varchar(25) NOT NULL,
   `img_avatar` varchar(25) NOT NULL,
-  `analytics` varchar(255) NOT NULL,
+  `analytics` varchar(500) NOT NULL,
   `siteopen` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 开启网站  1关闭网站',
   `site_themes` varchar(15) NOT NULL DEFAULT 'default' COMMENT '默认模板',
   `site_home` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '导航首页',
