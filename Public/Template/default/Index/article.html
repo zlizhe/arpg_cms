@@ -31,7 +31,7 @@
 			<blockquote>标签</blockquote>
 			<ul class="list-unstyled list-inline tags">
 				<foreach name="tagsArr" item="value">
-					<li><a href="{:U('/search', array('query'=>$value))}" target="_blank">{$value}</a></li>
+					<li><a href="{:U('/search')}/query/{$value}" target="_blank">{$value}</a></li>
 				</foreach>
 			</ul>
 
