@@ -57,7 +57,7 @@ class DialogController extends PublicController {
         $this->assign('groupArr', $groupArr);
 
 
-        $this->display('set/dialog/editUser');
+        $this->display('Set/Dialog/editUser');
     }
 
 
@@ -75,7 +75,7 @@ class DialogController extends PublicController {
         $groupArr = $groupDb->getGroupList();
         $this->assign('groupArr', $groupArr);
         
-        $this->display('set/dialog/addUser');
+        $this->display('Set/Dialog/addUser');
     }
 
     /**
@@ -114,7 +114,7 @@ class DialogController extends PublicController {
         $this->assign('competenceArr', $competenceArr);
 
 
-        $this->display('set/dialog/editGroup');
+        $this->display('Set/Dialog/editGroup');
     }
 
 
@@ -142,7 +142,7 @@ class DialogController extends PublicController {
             $this->assign('competenceArr', $competenceArr);
         }
 
-        $this->display('set/dialog/editCompetence');
+        $this->display('Set/Dialog/editCompetence');
     }
 
 
@@ -173,7 +173,7 @@ class DialogController extends PublicController {
         $navList = $navDb->getNavOne();
         $this->assign('navList', $navList);
 
-        $this->display('set/dialog/editNav');
+        $this->display('Set/Dialog/editNav');
     }
 
     /**
@@ -187,7 +187,7 @@ class DialogController extends PublicController {
         $this->assign('ref', $ref);
 
 
-        $this->display('set/dialog/addThemes');
+        $this->display('Set/Dialog/addThemes');
     }
 
     /**
@@ -203,7 +203,7 @@ class DialogController extends PublicController {
         $type = I('get.type', 'all');
         $this->assign('type', $type);
         
-        $this->display('set/dialog/rmCache');
+        $this->display('Set/Dialog/rmCache');
     }
 
 
@@ -234,7 +234,7 @@ class DialogController extends PublicController {
         }
 
         
-        $this->display('set/dialog/editCategory');
+        $this->display('Set/Dialog/editCategory');
     }
 
     /**
@@ -265,6 +265,6 @@ class DialogController extends PublicController {
         //ACTION 提交位置
         $this->assign('action', U('Set/Ajax/cutImg'));
         
-        $this->display('set/dialog/articleUpImg');
+        $this->display('Set/Dialog/articleUpImg');
     }
 }

@@ -116,7 +116,7 @@ class DialogController extends PublicController {
         //ACTION 提交位置
         $this->assign('action', U('Member/Ajax/cutImg'));
         
-        $this->display('set/dialog/articleUpImg');
+        $this->display('Set/Dialog/articleUpImg');
     }
 
 
