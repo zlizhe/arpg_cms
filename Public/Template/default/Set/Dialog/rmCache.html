@@ -25,7 +25,7 @@
 </form>
 
 <script>
-	$.getJSON("/index.php/set/ajax/rmCache/type/{$type}", {},function(result){   
+	$.getJSON("/set/ajax/rmCache/type/{$type}", {},function(result){   
 		if(result.status == 'success'){
 			successMsg("操作成功, 正在跳转...", '<?= $ref?>');
 		}else{
