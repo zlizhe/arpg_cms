@@ -102,6 +102,10 @@ function ajaxLink(_this){
 	var target = _this.attr('target');
 	//新窗口打开
 	if (target == '_blank'){
+		return window.local.href(href, target);
+	}
+	//无链接
+	if (href == '#' || href == "javascript:;") {
 		return true;
 	}
 	var clickClass = _this.parent().attr('click-class');
@@ -119,14 +123,15 @@ function ajaxGet(href, title){
 	$.get(href, function(result){
 
 		console.log(href);
+		var ajaxArea = $('ajaxcontent');
 		if (result){
-			$('ajaxcontent').html(result);
+			scroll(0,0);
+			ajaxArea.html(result);
 			var stateObject = {
 				"title": title,
 				"url": href
 			};
 			window.history.pushState(stateObject,title,href);
-			scrollTo("header");
 			return false;
 		}else{
 			//失败

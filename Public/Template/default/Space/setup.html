@@ -1,9 +1,10 @@
+	<include file="Space/bread" />
 
 	<div class="col-md-8">
 		<ul class="nav nav-tabs" role="tablist">
-		  	<li class="<if condition="$app == 1">active</if>"><a href="{:U('/space/setup/app/1')}">个人信息</a></li>
-		  	<li class="<if condition="$app == 2">active</if>"><a href="{:U('/space/setup/app/2')}">修改头像</a></li>
-		  	<li class="<if condition="$app == 3">active</if>"><a href="{:U('/space/setup/app/3')}">账号资料</a></li>
+		  	<li class="<if condition="$app == 1">active</if>"><a onclick="ajaxLink($(this));return false;" href="{:U('/space/setup/app/1')}">个人信息</a></li>
+		  	<li class="<if condition="$app == 2">active</if>"><a onclick="ajaxLink($(this));return false;" href="{:U('/space/setup/app/2')}">修改头像</a></li>
+		  	<li class="<if condition="$app == 3">active</if>"><a onclick="ajaxLink($(this));return false;" href="{:U('/space/setup/app/3')}">账号资料</a></li>
 		</ul>
 
 
@@ -156,3 +157,4 @@
 
 	</div>
 
+	<include file="Space/side" />

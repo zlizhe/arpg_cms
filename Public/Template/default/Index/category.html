@@ -40,7 +40,7 @@
 	                <li class="media">
 	                	<if condition="$value['cover_img']">
 		                    <a onclick="ajaxLink($(this));return false;" class="pull-left" href="/article/{$value['id']}/{$value['title']}">
-		                        <img class="media-object img-rounded" src="__PUBLIC__/img/loading.gif" data-original="{$value['cover_img']}" />
+		                        <img class="media-object img-rounded" src="{$value['cover_img']}" />
 		                    </a>
 	                    </if>
 	                    <div class="media-body">

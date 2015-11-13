@@ -31,7 +31,7 @@
 			<blockquote>标签</blockquote>
 			<ul class="list-unstyled list-inline tags">
 				<foreach name="tagsArr" item="value">
-					<li><a onclick="ajaxLink($(this));return false;" href="{:U('/search')}/query/{$value}" target="_blank">{$value}</a></li>
+					<li><a onclick="ajaxLink($(this));return false;" href="{:U('/search')}/query/{$value}" >{$value}</a></li>
 				</foreach>
 			</ul>
 
