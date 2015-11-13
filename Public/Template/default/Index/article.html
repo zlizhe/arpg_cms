@@ -1,7 +1,7 @@
 <div class="row">
 	<ol class="breadcrumb">
-		<li><a href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a></li>
-		<li><a href="/{$categoryArr['path_name']}">{$categoryArr['value']}</a></li>
+		<li><a onclick="ajaxLink($(this));return false;" href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li><a onclick="ajaxLink($(this));return false;" href="/{$categoryArr['path_name']}">{$categoryArr['value']}</a></li>
 		<li class="active">{$articleArr['title']}</li>
 	</ol>
 </div>
@@ -31,7 +31,7 @@
 			<blockquote>标签</blockquote>
 			<ul class="list-unstyled list-inline tags">
 				<foreach name="tagsArr" item="value">
-					<li><a href="{:U('/search')}/query/{$value}" target="_blank">{$value}</a></li>
+					<li><a onclick="ajaxLink($(this));return false;" href="{:U('/search')}/query/{$value}" target="_blank">{$value}</a></li>
 				</foreach>
 			</ul>
 
@@ -40,10 +40,10 @@
 		{//前后文章}
 		<ul class="pager">
 			<if condition="$beforeArr">
-				<li class="previous"><a href="{:U('/article', array($beforeArr['id']=>$beforeArr['title']))}">&larr; {$beforeArr['title']}</a></li>
+				<li class="previous"><a onclick="ajaxLink($(this));return false;" href="{:U('/article', array($beforeArr['id']=>$beforeArr['title']))}">&larr; {$beforeArr['title']}</a></li>
 			</if>
 			<if condition="$afterArr">
-				<li class="next"><a href="{:U('/article', array($afterArr['id']=>$afterArr['title']))}">{$afterArr['title']} &rarr;</a></li>
+				<li class="next"><a onclick="ajaxLink($(this));return false;" href="{:U('/article', array($afterArr['id']=>$afterArr['title']))}">{$afterArr['title']} &rarr;</a></li>
 			</if>
 		</ul>
 

@@ -60,11 +60,9 @@
 
 #ajax_loading{
 	display:none;
-	right:0;
+	right:45%;
 	position:fixed;
-	color:#FFF;
-	background-color:#FF0000;
-	top:0px;
+	top:1%;
 }
 .help-block{
 	font-size: 12px;

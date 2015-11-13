@@ -12,7 +12,7 @@
 		  	<div class="carousel-inner" role="listbox">
 		  		<foreach name="slideArr" item="value">
 			    	<div class="item <if condition="$key == 0">active</if>">
-			    		<a href="{$value['link']}" <if condition="$value['target']">target="_blank"</if>>
+			    		<a onclick="ajaxLink($(this)); return false;" href="{$value['link']}" <if condition="$value['target']">target="_blank"</if>>
 			      			<img src="{$value['img_url']}" alt="正在加载图片" />
 			      		</a>
 			    	</div>
@@ -44,14 +44,14 @@
 			<li class="index_cat">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="/{$value['path_name']}">{$value['value']}</a>
-						<span class="pull-right"><a href="/{$value['path_name']}">更多 >></a></span>
+						<a onclick="ajaxLink($(this));return false;" href="/{$value['path_name']}">{$value['value']}</a>
+						<span class="pull-right"><a onclick="ajaxLink($(this));return false;" href="/{$value['path_name']}">更多 >></a></span>
 					</div>
 					
 					<if condition="$value['articles']">
 						<ul class="list-group">
 							<foreach name="value['articles']" item="value2">
-								<li class="list-group-item"><a href="/article/{$value2['id']}/{$value2['title']}">{$value2['title']}</a></li>
+								<li class="list-group-item"><a onclick="ajaxLink($(this));return false;" href="/article/{$value2['id']}/{$value2['title']}">{$value2['title']}</a></li>
 							</foreach>
 						</ul>
 					<else />

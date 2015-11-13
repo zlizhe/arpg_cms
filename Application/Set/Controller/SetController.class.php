@@ -38,7 +38,11 @@ class SetController extends PublicController {
         $this->_seoSetting['siteName'] = $this->_Gset['SITE_NAME'];
 
         //LAYOUT  指定
-        layout('Set/layout');
+        if (!IS_AJAX){
+            layout('Set/layout');
+        }else{
+            layout(false);
+        }
         $this->theme('default');
     }
 

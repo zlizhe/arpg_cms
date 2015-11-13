@@ -285,7 +285,9 @@
 				
 				<div class="row set_main">
 					<div class="col-md-12">
-						
+						<ajaxcontent>
+
+							
 <?php if($commentArr['how'] == 0): ?><blockquote>没有找到信息</blockquote>
 	
 <?php else: ?>
@@ -371,6 +373,7 @@
 				<li>&nbsp;</li><?php endif; ?>
 		</ul>
 	</div><?php endif; ?>
+						</ajaxcontent>
 					</div>
 				</div>
 

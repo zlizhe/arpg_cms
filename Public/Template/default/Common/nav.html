@@ -4,7 +4,7 @@
 	
 	<div class="row top_logo">
 		<div class="col-md-3 col-sm-4">
-			<a href="{$_Gset['SITE_URL']}" title="{$_Gset['SITE_NAME']}">
+			<a onclick="ajaxLink($(this));return false;" href="{$_Gset['SITE_URL']}" title="{$_Gset['SITE_NAME']}">
 				<img src="/img/logo.png" />
 			</a>
 		</div>
@@ -54,14 +54,14 @@
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 			      	</button>
-			      	<a class="navbar-brand" href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a>
+			      	<a onclick="ajaxLink($(this));return false;" class="navbar-brand" href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a>
 			    </div>
 
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      	<ul class="nav navbar-nav">
 			      		<foreach name="navArr" item="value">
 				        	<li <if condition="$value['select'] == 1">class="active"</if> click-class="active">
-				          		<a <if condition="$value['childArr']">class="dropdown-toggle" data-toggle="dropdown"</if> href="{$value['link']}" title="{$value['title']}" <if condition="$value['target'] == 1">target="_blank"</if>>{$value['value']}
+				          		<a onclick="ajaxLink($(this));return false;" <if condition="$value['childArr']">class="dropdown-toggle" data-toggle="dropdown"</if> href="{$value['link']}" title="{$value['title']}" <if condition="$value['target'] == 1">target="_blank"</if>>{$value['value']}
 					        		<if condition="$value['childArr']">
 					        			<span class="caret"></span>
 					        		</if>
@@ -70,12 +70,12 @@
 									<ul class="dropdown-menu" role="menu">
 										<if condition="$value['link'] && $value['link'] != '#' && $value['link'] !='javascript:;'">
 											<li>
-												<a href="{$value['link']}" title="{$value['title']}" <if condition="$value['target'] == 1">target="_blank"</if>>{$value['value']}</a>
+												<a onclick="ajaxLink($(this));return false;" href="{$value['link']}" title="{$value['title']}" <if condition="$value['target'] == 1">target="_blank"</if>>{$value['value']}</a>
 											</li>
 										</if>
 										<foreach name="value['childArr']" item="value2">
 											<li>
-												<a href="{$value2['link']}" title="{$value2['title']}" <if condition="$value2['target'] == 1">target="_blank"</if>>{$value2['value']}</a>
+												<a onclick="ajaxLink($(this));return false;" href="{$value2['link']}" title="{$value2['title']}" <if condition="$value2['target'] == 1">target="_blank"</if>>{$value2['value']}</a>
 											</li>
 										</foreach>
 									</ul>

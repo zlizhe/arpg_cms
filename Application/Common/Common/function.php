@@ -291,8 +291,8 @@ function getLocation($getip)
 //多页码分页 
 function html_multi($page, $howpage, $url="", $adjacents=4) {
     
-    $repage    = "<li><a href=\"".$url.($page-1)."\">&laquo;</a></li>";
-    $nxpage    = "<li><a href=\"".$url.($page+1)."\">下一页 &raquo;</a></li>";
+    $repage    = "<li><a onclick=\"ajaxLink($(this));return false;\" href=\"".$url.($page-1)."\">&laquo;</a></li>";
+    $nxpage    = "<li><a onclick=\"ajaxLink($(this));return false;\" href=\"".$url.($page+1)."\">下一页 &raquo;</a></li>";
     if ($page <= 1){
         $repage = "";
     }
@@ -300,12 +300,12 @@ function html_multi($page, $howpage, $url="", $adjacents=4) {
         $nxpage = "";
     }
     if ($page > ($adjacents + 1)) {
-        $first = "<li><a href=\"".$url.'1'."\">1 ...</a></li>";
+        $first = "<li><a onclick=\"ajaxLink($(this));return false;\" href=\"".$url.'1'."\">1 ...</a></li>";
     }else{
         $first = '';
     }
     if ($page < ($howpage - $adjacents)){
-        $last = "<li><a href=\"".$url.$howpage."\">... $howpage</a></li>";
+        $last = "<li><a onclick=\"ajaxLink($(this));return false;\" href=\"".$url.$howpage."\">... $howpage</a></li>";
     }else{
         $last = '';
     }
@@ -320,11 +320,11 @@ function html_multi($page, $howpage, $url="", $adjacents=4) {
     }*/
     for ($i=1; $i<=$howpage; $i++){  //页码
         if ($page == $i){
-            $multipage .= "<li class=\"active\"><a href=\"#\">$i</a></li>";
+            $multipage .= "<li onclick=\"ajaxLink($(this));return false;\" class=\"active\"><a href=\"#\">$i</a></li>";
         }elseif($page > ($i + $adjacents) || $page < ($i - $adjacents)){
 
         }else{
-            $multipage .= "<li><a href=\"".$url.$i."\">$i</a></li>";
+            $multipage .= "<li><a onclick=\"ajaxLink($(this));return false;\" href=\"".$url.$i."\">$i</a></li>";
         }
     }
     $multipage .= $last;

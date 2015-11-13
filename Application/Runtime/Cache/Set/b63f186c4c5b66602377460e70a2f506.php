@@ -285,7 +285,9 @@
 				
 				<div class="row set_main">
 					<div class="col-md-12">
-						
+						<ajaxcontent>
+
+							
 <?php if($articleArr['how'] == 0): ?><blockquote>没有找到信息</blockquote>
 	
 <?php else: ?>
@@ -347,7 +349,7 @@
 					</td>
 					<td><?php echo (date("Y-m-d H:i",$value['created_at'])); ?></td>
 					<td>
-						<?php if($app == 1): ?><a href="<?php echo U('/set/editArticle', array('ac'=>'edit','aid'=>$value['id']));?>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+						<?php if($app == 1): ?><a onclick="ajaxLink($(this));return false;" href="<?php echo U('/set/editArticle', array('ac'=>'edit','aid'=>$value['id']));?>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
 						<?php else: ?>
 							<a href="javascript:;" onclick="arpgBatch('确定要恢复显示 <?php echo ($value['title']); ?>', 'arpg_check', 'setBatchArticle', 're', <?php echo ($value['id']); ?>);" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-repeat"></span> 恢复</a><?php endif; ?>
 					</td>
@@ -375,6 +377,7 @@
 				<li>&nbsp;</li><?php endif; ?>
 		</ul>
 	</div><?php endif; ?>
+						</ajaxcontent>
 					</div>
 				</div>
 

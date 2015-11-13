@@ -285,7 +285,9 @@
 				
 				<div class="row set_main">
 					<div class="col-md-12">
-						
+						<ajaxcontent>
+
+							
 <?php if(!$catArr): ?><blockquote>没有找到信息</blockquote>
 	
 <?php else: ?>
@@ -348,6 +350,7 @@
 		<button type="submit" class="btn btn-primary btn-sm" data-loading-text="Loading...">提交</button>
 	</div>
 	</form><?php endif; ?>
+						</ajaxcontent>
 					</div>
 				</div>
 

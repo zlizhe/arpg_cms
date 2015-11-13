@@ -33,61 +33,85 @@ $(document).ready(function() {
 	});
 
     //全局 改用DIALOG 打开弹出窗口
-    //$("a[id='showWindow']").click(function(){
-    //	// var olddata = $(this).attr('href');
-    //	// var controller = olddata.split('/');
-    //	// data = olddata.replace(controller[2], "dialog");
-    //	var data = $(this).attr('data-dialog');
-    //	if (!data) {
-    //		var data = $(this).attr('href');
-    //	}
-    //	showWindow(data);
-    //	return false;
-    //});
+    $("a[id='showWindow']").on('click', function(){
+    	// var olddata = $(this).attr('href');
+    	// var controller = olddata.split('/');
+    	// data = olddata.replace(controller[2], "dialog");
+    	var data = $(this).attr('data-dialog');
+    	if (!data) {
+    		var data = $(this).attr('href');
+    	}
+    	showWindow(data);
+    	return false;
+    });
 
 	//所有 a 标签可以用 ajax
-	$("a").click(function(){
-		var id = $(this).attr("id");
-		var href = $(this).attr('href');
+	//$("a").bind('click', function(){
+	//	var id = $(this).attr("id");
+	//	var href = $(this).attr('href');
+	//	var isajax = $(this).attr('data-ajax');
+    //
+	//	//不使用ajax
+	//	if (isajax == 'false'){
+	//		return true;
+	//	}
+    //
+	//	//showwindow hook
+	//	if (id == 'showWindow'){
+	//		var data = $(this).attr('data-dialog');
+	//		if (!data) {
+	//			var data = href;
+	//		}
+	//		showWindow(data);
+	//		return false;
+	//	}
+    //
+	//	//ajax hook
+	//	if (href == '#' || href == "javascript:;") {
+	//		return true;
+	//	}else{
+	//		var title = $(this).text();
+	//		//change click class
+	//		var clickClass = $(this).parent().attr('click-class');
+	//		if (clickClass){
+	//			$(this).parent().siblings("li").removeClass(clickClass);
+	//			$(this).parent().addClass(clickClass);
+	//		}
+	//		//is link
+	//		ajaxGet(href, title);
+	//	}
+    //
+	//	return false;
+	//});
 
-		//showwindow hook
-		if (id == 'showWindow'){
-			var data = $(this).attr('data-dialog');
-			if (!data) {
-				var data = href;
-			}
-			showWindow(data);
-			return false;
-		}
 
-		//ajax hook
-		if (href == '#' || href == "javascript:;") {
-			return true;
-		}else{
-			var title = $(this).text();
-			//change click class
-			var clickClass = $(this).attr('click-class');
-			if (clickClass){
-				$(this).parent().siblings("li").removeClass(clickClass);
-				$(this).parent().addClass(clickClass);
-			}
-			//is link
-			ajaxGet(href, title);
-		}
-
-		return false;
-	});
-
-	//ajax 浏览器后退
-	window.addEventListener('popstate', function(e){
-		if (history.state){
-			var state = e.state;
-			//do something(state.url, state.title);
-			ajaxGet(state.url, state.title);
-		}
-	}, false);
 });
+//ajax 浏览器后退
+window.addEventListener('popstate', function(e){
+	if (history.state){
+		var state = e.state;
+		//do something(state.url, state.title);
+		ajaxGet(state.url, state.title);
+	}
+}, false);
 
+//全部使用 ajax 打开的 链接
+function ajaxLink(_this){
+	var href = _this.attr('href');
+	var title = _this.text();
+	var target = _this.attr('target');
+	//新窗口打开
+	if (target == '_blank'){
+		return true;
+	}
+	var clickClass = _this.parent().attr('click-class');
+	if (clickClass){
+		_this.parent().siblings("li").removeClass(clickClass);
+		_this.parent().addClass(clickClass);
+	}
+	//is link
+	return ajaxGet(href, title);
+}
 
 //ajax 打开页面
 function ajaxGet(href, title){
@@ -102,6 +126,7 @@ function ajaxGet(href, title){
 				"url": href
 			};
 			window.history.pushState(stateObject,title,href);
+			scrollTo("header");
 			return false;
 		}else{
 			//失败
@@ -191,7 +216,7 @@ function scrollTo(go){
     var targetOffset = $(go).offset().top - 50;
     $('html,body').animate({
         scrollTop: targetOffset
-    },800);
+    },300);
 }
 
 

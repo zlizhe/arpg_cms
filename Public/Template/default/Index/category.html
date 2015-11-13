@@ -2,7 +2,7 @@
 
 <div class="row">
 	<ol class="breadcrumb">
-		<li><a href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li><a onclick="ajaxLink($(this));return false;" href="{$_Gset['SITE_URL']}"><span class="glyphicon glyphicon-home"></span></a></li>
 		<li class="active">{$categoryArr['value']}</li>
 	</ol>
 </div>
@@ -21,7 +21,7 @@
 			<if condition="$query">
 				<small>
 				<span class="label label-primary">
-				关键词: "{$query}" <a href="{:U($urlName, array('query'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a> 
+				关键词: "{$query}" <a onclick="ajaxLink($(this));return false;" href="{:U($urlName, array('query'=>NULL))}" title="清除" class="del"><span class="glyphicon glyphicon-remove"></span></a>
 				</span>
 				</small>
 			</if>
@@ -39,17 +39,17 @@
 				<foreach name="articleArr['row']" item="value">
 	                <li class="media">
 	                	<if condition="$value['cover_img']">
-		                    <a class="pull-left" href="/article/{$value['id']}/{$value['title']}">
-		                        <img class="media-object img-rounded" src="{$value['cover_img']}" />
+		                    <a onclick="ajaxLink($(this));return false;" class="pull-left" href="/article/{$value['id']}/{$value['title']}">
+		                        <img class="media-object img-rounded" src="__PUBLIC__/img/loading.gif" data-original="{$value['cover_img']}" />
 		                    </a>
 	                    </if>
 	                    <div class="media-body">
 	                        <h3 class="media-heading">
-	                            <a href="/article/{$value['id']}/{$value['title']}">{$value['title']}</a>
+	                            <a onclick="ajaxLink($(this));return false;" href="/article/{$value['id']}/{$value['title']}">{$value['title']}</a>
 	                        </h3>
 	                        <small>[ 浏览数: {$value['view_num']} 评论数: {$value['comment_num']} 发布时间: {$value[created_at]|date="Y-m-d H:i:s",###} 作者: {$value['realname']}]</small>
 							<p class="summary">
-								<a href="/article/{$value['id']}/{$value['title']}">
+								<a onclick="ajaxLink($(this));return false;" href="/article/{$value['id']}/{$value['title']}">
 		                        {$value['summary']}
 		                        </a>
 	                        </p>
@@ -58,7 +58,7 @@
 		                    <div class="pull-right">
 								<ul class="list-unstyled list-inline tags">
 									<foreach name="value['tags_arr']" item="value2">
-										<li><a href="{:U($urlName)}/query/{$value2}">{$value2}</a></li>
+										<li><a onclick="ajaxLink($(this));return false;" href="{:U($urlName)}/query/{$value2}">{$value2}</a></li>
 									</foreach>
 								</ul>
 		                    </div>

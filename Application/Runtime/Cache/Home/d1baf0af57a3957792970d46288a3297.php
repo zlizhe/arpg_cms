@@ -1,32 +1,33 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
     <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta name="force-rendering" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo ($seoSetting['title']); ?> - <?php echo ($seoSetting['siteName']); ?></title>
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <meta name="force-rendering" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><?php echo ($seoSetting['title']); ?> - <?php echo ($seoSetting['siteName']); ?></title>
 
-    <link href="/css/bs.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="/css/html5shiv.min.js"></script>
-      <script src="/css/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="/css/common.css">
-    
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bs.js"></script>
-    <script src="/js/common.js"></script>
+        <link href="/css/bs.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+          <script src="/css/html5shiv.min.js"></script>
+          <script src="/css/respond.min.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" href="/css/common.css">
 
-    <meta name="generator" content="ARPG TEAM." />
-    <meta name="author" content="lizhe" />
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bs.js"></script>
+        <script src="/js/lazyload.js"></script>
+        <script src="/js/common.js"></script>
+
+        <meta name="generator" content="ARPG TEAM." />
+        <meta name="author" content="lizhe" />
     
 
     </head>
 <body>
 
-    <div id="ajax_loading">&nbsp;&nbsp;Loading ...&nbsp;</div>  
+    <div id="ajax_loading"><img src="/img/loading.gif" alt=""></div>  
 
 
 <link href="/css/arpg.css" rel="stylesheet">
@@ -43,7 +44,7 @@
 	
 	<div class="row top_logo">
 		<div class="col-md-3 col-sm-4">
-			<a href="<?php echo ($_Gset['SITE_URL']); ?>" title="<?php echo ($_Gset['SITE_NAME']); ?>">
+			<a onclick="ajaxLink($(this));return false;" href="<?php echo ($_Gset['SITE_URL']); ?>" title="<?php echo ($_Gset['SITE_NAME']); ?>">
 				<img src="/img/logo.png" />
 			</a>
 		</div>
@@ -90,21 +91,21 @@
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 			      	</button>
-			      	<a class="navbar-brand" href="<?php echo ($_Gset['SITE_URL']); ?>"><span class="glyphicon glyphicon-home"></span></a>
+			      	<a onclick="ajaxLink($(this));return false;" class="navbar-brand" href="<?php echo ($_Gset['SITE_URL']); ?>"><span class="glyphicon glyphicon-home"></span></a>
 			    </div>
 
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      	<ul class="nav navbar-nav">
-			      		<?php if(is_array($navArr)): foreach($navArr as $key=>$value): ?><li <?php if($value['select'] == 1): ?>class="active"<?php endif; ?>>
-				          		<a <?php if($value['childArr']): ?>class="dropdown-toggle" data-toggle="dropdown"<?php endif; ?> href="<?php echo ($value['link']); ?>" title="<?php echo ($value['title']); ?>" <?php if($value['target'] == 1): ?>target="_blank"<?php endif; ?>><?php echo ($value['value']); ?>
+			      		<?php if(is_array($navArr)): foreach($navArr as $key=>$value): ?><li <?php if($value['select'] == 1): ?>class="active"<?php endif; ?> click-class="active">
+				          		<a onclick="ajaxLink($(this));return false;" <?php if($value['childArr']): ?>class="dropdown-toggle" data-toggle="dropdown"<?php endif; ?> href="<?php echo ($value['link']); ?>" title="<?php echo ($value['title']); ?>" <?php if($value['target'] == 1): ?>target="_blank"<?php endif; ?>><?php echo ($value['value']); ?>
 					        		<?php if($value['childArr']): ?><span class="caret"></span><?php endif; ?>
 				        		</a>
 				        		<?php if($value['childArr']): ?><ul class="dropdown-menu" role="menu">
 										<?php if($value['link'] && $value['link'] != '#' && $value['link'] !='javascript:;'): ?><li>
-												<a href="<?php echo ($value['link']); ?>" title="<?php echo ($value['title']); ?>" <?php if($value['target'] == 1): ?>target="_blank"<?php endif; ?>><?php echo ($value['value']); ?></a>
+												<a onclick="ajaxLink($(this));return false;" href="<?php echo ($value['link']); ?>" title="<?php echo ($value['title']); ?>" <?php if($value['target'] == 1): ?>target="_blank"<?php endif; ?>><?php echo ($value['value']); ?></a>
 											</li><?php endif; ?>
 										<?php if(is_array($value['childArr'])): foreach($value['childArr'] as $key=>$value2): ?><li>
-												<a href="<?php echo ($value2['link']); ?>" title="<?php echo ($value2['title']); ?>" <?php if($value2['target'] == 1): ?>target="_blank"<?php endif; ?>><?php echo ($value2['value']); ?></a>
+												<a onclick="ajaxLink($(this));return false;" href="<?php echo ($value2['link']); ?>" title="<?php echo ($value2['title']); ?>" <?php if($value2['target'] == 1): ?>target="_blank"<?php endif; ?>><?php echo ($value2['value']); ?></a>
 											</li><?php endforeach; endif; ?>
 									</ul><?php endif; ?>
 				        	</li><?php endforeach; endif; ?>
@@ -115,11 +116,13 @@
 	</div><?php endif; ?>
 
 </header>
-	
-	<div class="row">
+
+	<ajaxcontent>
+
+		<div class="row">
 	<ol class="breadcrumb">
-		<li><a href="<?php echo ($_Gset['SITE_URL']); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
-		<li><a href="/<?php echo ($categoryArr['path_name']); ?>"><?php echo ($categoryArr['value']); ?></a></li>
+		<li><a onclick="ajaxLink($(this));return false;" href="<?php echo ($_Gset['SITE_URL']); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
+		<li><a onclick="ajaxLink($(this));return false;" href="/<?php echo ($categoryArr['path_name']); ?>"><?php echo ($categoryArr['value']); ?></a></li>
 		<li class="active"><?php echo ($articleArr['title']); ?></li>
 	</ol>
 </div>
@@ -145,13 +148,13 @@
 		
 		<?php if($tagsArr): ?><blockquote>标签</blockquote>
 			<ul class="list-unstyled list-inline tags">
-				<?php if(is_array($tagsArr)): foreach($tagsArr as $key=>$value): ?><li><a href="<?php echo U('/search', array('query'=>$value));?>" target="_blank"><?php echo ($value); ?></a></li><?php endforeach; endif; ?>
+				<?php if(is_array($tagsArr)): foreach($tagsArr as $key=>$value): ?><li><a onclick="ajaxLink($(this));return false;" href="<?php echo U('/search');?>/query/<?php echo ($value); ?>" target="_blank"><?php echo ($value); ?></a></li><?php endforeach; endif; ?>
 			</ul><?php endif; ?>
 
 		
 		<ul class="pager">
-			<?php if($beforeArr): ?><li class="previous"><a href="<?php echo U('/article', array($beforeArr['id']=>$beforeArr['title']));?>">&larr; <?php echo ($beforeArr['title']); ?></a></li><?php endif; ?>
-			<?php if($afterArr): ?><li class="next"><a href="<?php echo U('/article', array($afterArr['id']=>$afterArr['title']));?>"><?php echo ($afterArr['title']); ?> &rarr;</a></li><?php endif; ?>
+			<?php if($beforeArr): ?><li class="previous"><a onclick="ajaxLink($(this));return false;" href="<?php echo U('/article', array($beforeArr['id']=>$beforeArr['title']));?>">&larr; <?php echo ($beforeArr['title']); ?></a></li><?php endif; ?>
+			<?php if($afterArr): ?><li class="next"><a onclick="ajaxLink($(this));return false;" href="<?php echo U('/article', array($afterArr['id']=>$afterArr['title']));?>"><?php echo ($afterArr['title']); ?> &rarr;</a></li><?php endif; ?>
 		</ul>
 
 
@@ -322,7 +325,7 @@ function getCommentMsg(aid, offset) {
 	
 	//var page ? page : 1;
 	if (aid) {
-		$.getJSON("/index.php/home/ajax/getComment", {'aid': aid, 'offset': offset},function(result){   
+		$.getJSON("/home/ajax/getComment", {'aid': aid, 'offset': offset},function(result){   
 			//console.log(result.res);
 			if(result.status == 'success'){
 				if (offset == 0) {
@@ -377,7 +380,7 @@ function replay(re_id) {
 		</div>
 		
 		<ul class="list-group">
-			<?php if(is_array($sameCatArr)): foreach($sameCatArr as $key=>$value): ?><li class="list-group-item"><a href="/article/<?php echo ($value['id']); ?>/<?php echo ($value['title']); ?>"><?php echo ($value['title']); ?></a></li><?php endforeach; endif; ?>
+			<?php if(is_array($sameCatArr)): foreach($sameCatArr as $key=>$value): ?><li class="list-group-item"><a onclick="ajaxLink($(this));return false;" href="/article/<?php echo ($value['id']); ?>/<?php echo ($value['title']); ?>"><?php echo ($value['title']); ?></a></li><?php endforeach; endif; ?>
 		</ul>
 		
 	</div><?php endif; ?>
@@ -396,9 +399,12 @@ $(document).ready(function() {
     });
 });
 </script>
+	</ajaxcontent>
 </div>
 
-	
+
+
+
 	<div class="clearfix"></div>
 	<hr>
 
