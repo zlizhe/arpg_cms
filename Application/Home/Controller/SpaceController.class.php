@@ -37,7 +37,11 @@ class SpaceController extends PublicController {
         $this->assign('searchUrl', '/search');
 
         //指定LAYOUT
-        layout('Space/layout');
+        if (!IS_AJAX){
+            layout('Space/layout');
+        }else{
+            layout(false);
+        }
 	}
 
 

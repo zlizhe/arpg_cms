@@ -95,7 +95,7 @@
 
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      	<ul class="nav navbar-nav">
-			      		<?php if(is_array($navArr)): foreach($navArr as $key=>$value): ?><li <?php if($value['select'] == 1): ?>class="active"<?php endif; ?>>
+			      		<?php if(is_array($navArr)): foreach($navArr as $key=>$value): ?><li <?php if($value['select'] == 1): ?>class="active"<?php endif; ?> click-class="active">
 				          		<a <?php if($value['childArr']): ?>class="dropdown-toggle" data-toggle="dropdown"<?php endif; ?> href="<?php echo ($value['link']); ?>" title="<?php echo ($value['title']); ?>" <?php if($value['target'] == 1): ?>target="_blank"<?php endif; ?>><?php echo ($value['value']); ?>
 					        		<?php if($value['childArr']): ?><span class="caret"></span><?php endif; ?>
 				        		</a>
@@ -115,8 +115,10 @@
 	</div><?php endif; ?>
 
 </header>
-	
-	<?php if($slideArr): ?><div class="row">
+
+	<ajaxcontent>
+
+		<?php if($slideArr): ?><div class="row">
 		
 		
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -172,6 +174,7 @@
 
 
 </div>
+	</ajaxcontent>
 </div>
 
 	

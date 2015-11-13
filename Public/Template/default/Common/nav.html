@@ -60,7 +60,7 @@
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      	<ul class="nav navbar-nav">
 			      		<foreach name="navArr" item="value">
-				        	<li <if condition="$value['select'] == 1">class="active"</if>>
+				        	<li <if condition="$value['select'] == 1">class="active"</if> click-class="active">
 				          		<a <if condition="$value['childArr']">class="dropdown-toggle" data-toggle="dropdown"</if> href="{$value['link']}" title="{$value['title']}" <if condition="$value['target'] == 1">target="_blank"</if>>{$value['value']}
 					        		<if condition="$value['childArr']">
 					        			<span class="caret"></span>

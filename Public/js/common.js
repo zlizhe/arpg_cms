@@ -33,19 +33,82 @@ $(document).ready(function() {
 	});
 
     //全局 改用DIALOG 打开弹出窗口
-    $("a[id='showWindow']").click(function(){
-    	// var olddata = $(this).attr('href');
-    	// var controller = olddata.split('/');
-    	// data = olddata.replace(controller[2], "dialog");
-    	var data = $(this).attr('data-dialog');
-    	if (!data) {
-    		var data = $(this).attr('href');
-    	}
-    	showWindow(data);
-    	return false;
-    });
+    //$("a[id='showWindow']").click(function(){
+    //	// var olddata = $(this).attr('href');
+    //	// var controller = olddata.split('/');
+    //	// data = olddata.replace(controller[2], "dialog");
+    //	var data = $(this).attr('data-dialog');
+    //	if (!data) {
+    //		var data = $(this).attr('href');
+    //	}
+    //	showWindow(data);
+    //	return false;
+    //});
 
+	//所有 a 标签可以用 ajax
+	$("a").click(function(){
+		var id = $(this).attr("id");
+		var href = $(this).attr('href');
+
+		//showwindow hook
+		if (id == 'showWindow'){
+			var data = $(this).attr('data-dialog');
+			if (!data) {
+				var data = href;
+			}
+			showWindow(data);
+			return false;
+		}
+
+		//ajax hook
+		if (href == '#' || href == "javascript:;") {
+			return true;
+		}else{
+			var title = $(this).text();
+			//change click class
+			var clickClass = $(this).attr('click-class');
+			if (clickClass){
+				$(this).parent().siblings("li").removeClass(clickClass);
+				$(this).parent().addClass(clickClass);
+			}
+			//is link
+			ajaxGet(href, title);
+		}
+
+		return false;
+	});
+
+	//ajax 浏览器后退
+	window.addEventListener('popstate', function(e){
+		if (history.state){
+			var state = e.state;
+			//do something(state.url, state.title);
+			ajaxGet(state.url, state.title);
+		}
+	}, false);
 });
+
+
+//ajax 打开页面
+function ajaxGet(href, title){
+
+	$.get(href, function(result){
+
+		console.log(href);
+		if (result){
+			$('ajaxcontent').html(result);
+			var stateObject = {
+				"title": title,
+				"url": href
+			};
+			window.history.pushState(stateObject,title,href);
+			return false;
+		}else{
+			//失败
+			return true;
+		}
+	});
+}
 
 function showCaptcha(str){
 	//alert(str);

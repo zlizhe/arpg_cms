@@ -33,7 +33,11 @@ class IndexController extends PublicController {
         //print_r($this->ref);
         //print_r($this->_Guser);
         //指定LAYOUT
-        layout('Index/layout');
+        if (!IS_AJAX){
+            layout('Index/layout');
+        }else{
+            layout(false);
+        }
     }
 
     /**
@@ -46,15 +50,15 @@ class IndexController extends PublicController {
         $navDb = D('Service/ServiceNav');
         $navArr = $navDb->get($this->_Gset['SITE_HOME']);
 
-        $navLink = $navArr['link'];
-        //能判断是当前 CONTROLLER的URL
-        $thisIndex = array('/', './', '/home', $this->_Gset['SITE_URL'], $this->_Gset['SITE_URL'].'/');
-
-        ##### 跳转有小问题 当设置为 非INDEX页面为首页时 首页无法打开了 @lizhe 2014.8.26 #####
-        //如果设置首页 不是现在的首页 跳转...
-        if (!in_array($navLink, $thisIndex)) {
-            $this->redirect($navArr['link']);
-        }
+        //$navLink = $navArr['link'];
+        ////能判断是当前 CONTROLLER的URL
+        //$thisIndex = array('/', './', '/home', $this->_Gset['SITE_URL'], $this->_Gset['SITE_URL'].'/');
+        //
+        //##### 跳转有小问题 当设置为 非INDEX页面为首页时 首页无法打开了 @lizhe 2014.8.26 #####
+        ////如果设置首页 不是现在的首页 跳转...
+        //if (!in_array($navLink, $thisIndex)) {
+        //    $this->redirect($navArr['link']);
+        //}
         
         //echo 1;
         //搜索用URL名称
