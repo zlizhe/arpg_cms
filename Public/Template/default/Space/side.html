@@ -27,8 +27,8 @@
 
                 <if condition="$_Guser['uid'] == $uid">
                     <div class="modal-footer">
-                        <a href="{:U('/space/setup/app/2')}" class="btn"><span class="glyphicon glyphicon-user"></span> 修改头像</a>
-                        <a href="{:U('/space/setup/app/3')}" class="btn"><span class="glyphicon glyphicon-wrench"></span> 编辑资料</a>
+                        <a onclick="ajaxLink($(this));return false;" href="{:U('/space/setup/app/2')}" class="btn"><span class="glyphicon glyphicon-user"></span> 修改头像</a>
+                        <a onclick="ajaxLink($(this));return false;" href="{:U('/space/setup/app/3')}" class="btn"><span class="glyphicon glyphicon-wrench"></span> 编辑资料</a>
                     </div>
                 </if>
 
