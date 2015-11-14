@@ -4,13 +4,11 @@ arpg_cms
 ARPG CMS内容管理系统
 
 
-V0.1 BETA (开发者预览版)
+V0.4 正式版
 
 
-此版本为测试版
 
-
-适用于 LAMP/LNMP等 LINUX环境，需要PHP5.3以上、MYSQL5以上的开发环境即可
+需要PHP5.3以上、MYSQL5以上的开发环境即可
 
 
 ### 官方测试地址 http://cms.zlizhe.com ###
@@ -22,29 +20,14 @@ V0.1 BETA (开发者预览版)
 
 >1. Web服务器 指向 /ARPGCMS根目录/Public 目录
 
+>2. 打开网站目录 通过 安装程序自动初始化 网站数据
 
->2. 给予 Application/Runtime 、 Public/uploads 、 Public/plugin 、 Public/Template 目录 可写权限 (sudo chmod -R 777 dirname)
-
-
->3. 调整 Application/Common/Conf/config.php 中 数据库设置 DB_HOST DB_NAME DB_USER DB_PWD 相关设置
-
-
->4. 在MYSQL中导入 _db_bak 中的 sql 文件 数据库默认名称为 arpg_cms，默认编码为 utf8_general_ci
-
-
->5. 测试版中可以使用 Rewrite 来隐藏默认的 index.php，Public/nginx.conf 中为 NGINX 隐藏 index.php 的方法，APACHE 请添加 .htaccess 文件即可
-
-
->6. 如果安装中出现错误，请调整 Public/index.php 中 Debug 选项为 true
-
-
->7. 完成配置之后测试正常访问使用 初始管理员账号 账号名: admin 密码: admin 登入后台，并修改“网站设置”中的相关设置
+>3. 如果安装中出现错误，请调整 Public/index.php 中 Debug 选项为 true
 
 
 
 ### 完成后即可访问 ARPG CMS ###
 
-#### 安装步骤会在正式版中使用可视化的操作方式来代替 ####
 
 ##### 访问出现 403错误的 是第1项 没有指向 /arpg_cms/Public 目录，访问目录并非根目录，分类和文章如果一直停留在首页 则是 第5项 Rewrite 没有配置好 #####
 

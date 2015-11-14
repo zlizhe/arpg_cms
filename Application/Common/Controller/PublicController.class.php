@@ -13,7 +13,7 @@ class PublicController extends Controller {
 	 * 当前版本号
 	 * @var string
 	 */
-	protected $_Gver = 'v0.3';
+	protected $_Gver = 'v0.4';
 
 	/**
 	 * 网站设置
