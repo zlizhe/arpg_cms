@@ -28,6 +28,10 @@ https://github.com/zlizhe/arpg_cms/releases
 >3. 如果安装中出现错误，请调整 Public/index.php 中 Debug 选项为 true
 
 
+### BUG 反馈 ###
+
+https://github.com/zlizhe/arpg_cms/issues
+
 
 ### 完成后即可访问 ARPG CMS ###
 
