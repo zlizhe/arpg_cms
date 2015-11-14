@@ -11,8 +11,11 @@ V0.4 正式版
 需要PHP5.3以上、MYSQL5以上的开发环境即可
 
 
-### 官方测试地址 http://cms.zlizhe.com ###
+### 官方测试地址 ( http://cms.zlizhe.com ) ###
 
+
+# 安装包下载 #
+https://github.com/zlizhe/arpg_cms/releases
 
 
 # 必要设置 #
