@@ -5,22 +5,22 @@
 return array(
 
     /* 数据库设置 */
-//    'DB_TYPE'               =>  'mysql',     // 数据库类型
-//    'DB_HOST'               =>  'localhost', // 服务器地址
-//    'DB_NAME'               =>  'arpg_cms2',          // 数据库名
-//    'DB_USER'               =>  'root',      // 用户名
-//    'DB_PWD'                =>  '',          // 密码
-//    'DB_PORT'               =>  '3306',        // 端口
-//    'DB_PREFIX'             =>  'arpg_',    // 数据库表前缀
+    'DB_TYPE'               =>  'mysql',     // 数据库类型
+    'DB_HOST'               =>  '{DB_HOST}', // 服务器地址
+    'DB_NAME'               =>  '{DB_NAME}',          // 数据库名
+    'DB_USER'               =>  '{DB_USER}',      // 用户名
+    'DB_PWD'                =>  '{DB_PWD}',          // 密码
+    'DB_PORT'               =>  '{DB_PORT}',        // 端口
+    'DB_PREFIX'             =>  'arpg_',    // 数据库表前缀
 
     'APP_SUB_DOMAIN_DEPLOY' =>  false,   // 是否开启子域名部署
     'APP_SUB_DOMAIN_RULES'  =>  array(), // 子域名部署规则
 	'APP_DOMAIN_SUFFIX'     =>  '', // 域名后缀 二级域名 设置子域名 需设定 如果是com.cn net.cn 之类的后缀必须设置
 
     /* NAMESPACE 前缀 */
-    'COOKIE_PREFIX'         =>  'AFGBHPQJ',
-    'DATA_CACHE_PREFIX'     =>  'AFGBHPQJ',
-    'SESSION_PREFIX'        =>  'AFGBHPQJ',
+    'COOKIE_PREFIX'         =>  '{NAMESPACE}',
+    'DATA_CACHE_PREFIX'     =>  '{NAMESPACE}',
+    'SESSION_PREFIX'        =>  '{NAMESPACE}',
 
     /* 允许访问模块 */
     'MODULE_ALLOW_LIST'     =>  array('Home','Member','Set','Dialog','Service', 'Install'),

@@ -1,18 +1,6 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 50612
- Source Host           : localhost
- Source Database       : arpg_cms
-
- Target Server Type    : MySQL
- Target Server Version : 50612
- File Encoding         : utf-8
-
- Date: 08/30/2014 19:07:16 PM
-*/
+/**
+ * ARPG CMS SQL
+ */
 
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;

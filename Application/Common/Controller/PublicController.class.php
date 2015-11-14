@@ -42,6 +42,10 @@ class PublicController extends Controller {
 	 */
 	protected function _run()
 	{
+		//启动安装程序
+		if (!file_exists(CONF_PATH.'install.lock')){
+			redirect(U('Install/Run/step1'));
+		}
 		#####
 
 		//会员相关

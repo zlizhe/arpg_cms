@@ -1,0 +1,35 @@
+<include file="Common/header" />
+	
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-md-4"></div>
+
+			<div class="col-md-4 text-center">
+				<h3 class="text-center">{$seoSetting['title']}</h3>
+
+				<hr>
+				<div class="alert alert-info alert-dismissible fade in" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<p class="text-left">
+						安装程序已经完成安装, 如果您想再次执行安装<br/>
+						1.删除 <?= CONF_PATH?>install.lock 文件<br/>
+						2.在再次访问安装程序.
+						<br/><br/>
+						为了确保安装您可以在安装完成后删除 <?= APP_PATH?>Install 文件夹.
+					</p>
+				</div>
+
+				<a href="/" class="btn btn-success">进入网站</a>
+				<a href="/set" class="btn btn-danger">管理后台</a>
+				<hr>
+				<div class="clearfix"></div>
+
+			</div>
+
+			<div class="col-md-4"></div>
+		</div>
+
+	</div>
+
+<include file="Common/footer" />

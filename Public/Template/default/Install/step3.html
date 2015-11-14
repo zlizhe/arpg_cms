@@ -1,0 +1,77 @@
+<include file="Common/header" />
+	
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-md-4"></div>
+
+			<div class="col-md-4">
+				<h3 class="text-center">{$seoSetting['title']} - {$seoSetting['siteName']}</h3>
+
+				<?php if ($error):?>
+				<div class="alert alert-danger alert-dismissible fade in" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4>Error</h4>
+					<p><?= $error;?></p>
+				</div>
+				<?php endif;?>
+				<hr>
+				<form role="form" method="post" action="" enctype="multipart/form-data">
+					<div class="form-group">
+						<label>网站名称</label>
+						<input type="text" class="form-control" name="site_name" value="<?= $site_name ?: 'ARPG CMS';?>">
+					</div>
+
+					<div class="form-group">
+						<label>网站真实URL</label>
+						<input type="text" class="form-control" name="site_url" value="<?= $site_url ?: $_SERVER['HTTP_ORIGIN'];?>">
+					</div>
+
+					<div class="form-group">
+						<label>邮件服务器(可选)</label>
+						<input type="text" class="form-control" name="mail_server" value="<?= $mail_server;?>">
+					</div>
+					<div class="form-group">
+						<label>发件用户名(可选)</label>
+						<input type="text" class="form-control" name="mail_username" value="<?= $mail_username;?>">
+					</div>
+					<div class="form-group">
+						<label>发件密码(可选)</label>
+						<input type="text" class="form-control" name="mail_password" value="<?= $mail_password;?>">
+					</div>
+					<div class="form-group">
+						<label>图片域名或路径</label>
+						<input type="text" class="form-control" name="img_url" value="<?= $img_url ?: '/uploads/img/';?>">
+					</div>
+					<div class="form-group">
+						<label>头像域名或路径</label>
+						<input type="text" class="form-control" name="avatar_url" value="<?= $avatar_url ?: '/uploads/avatar/';?>">
+					</div>
+
+					<hr>
+
+					<div class="form-group">
+						<label>超级管理员账号</label>
+						<input type="text" class="form-control" name="adminName" value="<?= $adminName;?>">
+					</div>
+					<div class="form-group">
+						<label>超级管理员密码</label>
+						<input type="text" class="form-control" name="adminPassword" value="<?= $adminPassword;?>">
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">完成安装</button>
+					</div>
+				</form>
+
+				<hr>
+				<div class="clearfix"></div>
+
+			</div>
+
+			<div class="col-md-4"></div>
+		</div>
+
+	</div>
+
+<include file="Common/footer" />
